@@ -1655,44 +1655,5 @@
         });
     })();
 </script>
-<!-- ПЛАВНОЕ ПОЯВЛЕНИЕ СТРАНИЦЫ ИЗ ТЕМНОТЫ -->
-<script>
-    (function() {
-        // Создаём чёрный слой поверх всей страницы
-        const darkOverlay = document.createElement('div');
-        darkOverlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 999999;
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        `;
-        document.body.appendChild(darkOverlay);
-        
-        // Скрываем содержимое страницы до анимации
-        document.body.style.visibility = 'hidden';
-        
-        // Небольшая задержка перед началом проявления
-        setTimeout(() => {
-            // Начинаем убирать темноту
-            darkOverlay.style.opacity = '0';
-            
-            // Показываем содержимое
-            document.body.style.visibility = 'visible';
-            
-            // Удаляем слой после завершения анимации
-            setTimeout(() => {
-                if (darkOverlay && darkOverlay.parentNode) {
-                    darkOverlay.remove();
-                }
-            }, 1300);
-        }, 100);
-    })();
-</script>
 </body>
 </html>
