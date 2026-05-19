@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный мануал NYPD - Обучение и процедуры</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .page-hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 85, 164, 0.9)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Навигационные кнопки */
+        .quick-nav {
+            background: white;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 92px;
+            z-index: 999;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #003366, #0055a4);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 180px;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #0055a4, #003366);
+        }
+
+        /* Секции мануала */
+        .manual-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        .manual-content {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .principle-card {
+            background: #f8f9fa;
+            border-left: 4px solid #003366;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .principle-card h3 {
+            color: #003366;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .principle-card.important {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .principle-card.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .equipment-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .equipment-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .procedure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .procedure-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .procedure-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .radio-channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .channel-category h4 {
+            color: #003366;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #0055a4;
+        }
+
+        .channel-name {
+            font-weight: bold;
+            color: #003366;
+            min-width: 60px;
+        }
+
+        .channel-desc {
+            flex: 1;
+            margin-left: 15px;
+            color: #666;
+        }
+
+        .force-stages {
+            margin: 40px 0;
+        }
+
+        .force-stage {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .force-stage:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .stage-number {
+            background: #003366;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .force-stage.critical .stage-number {
+            background: #dc3545;
+        }
+
+        .stage-content {
+            flex: 1;
+        }
+
+        .stage-content h4 {
+            color: #003366;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .bureau-grid, .rank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .bureau-item, .rank-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #003366;
+        }
+
+        .bureau-item h4, .rank-item h4 {
+            color: #003366;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .phonetic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .phonetic-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .phonetic-letter {
+            font-weight: bold;
+            color: #003366;
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .phonetic-word {
+            margin-left: 15px;
+            color: #666;
+        }
+
+        .note {
+            background: #e8f4fd;
+            border-left: 4px solid #003366;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .note h4 {
+            color: #003366;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .note ul, .note ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .note li {
+            margin-bottom: 8px;
+        }
+
+        .note.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .note.important {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .procedure-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+        }
+
+        .back-btn {
+            background: #003366;
+            color: white;
+            margin-right: 15px;
+        }
+
+        .back-btn:hover {
+            background: #0055a4;
+        }
+
+        footer {
+            background: #002244;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav li {
+                margin: 5px 10px;
+            }
+
+            .page-hero {
+                height: 250px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+
+            .quick-nav {
+                top: 0;
+                position: relative;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .manual-section {
+                padding: 40px 0;
+            }
+
+            .manual-content {
+                padding: 25px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .equipment-grid,
+            .procedure-grid,
+            .bureau-grid,
+            .rank-grid,
+            .phonetic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .force-stage {
+                flex-direction: column;
+            }
+
+            .stage-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .radio-channels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero {
+                height: 200px;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-hero p {
+                font-size: 1rem;
+            }
+
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+
+            .principle-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="polaws1.html">Главная</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Полный мануал NYPD</h1>
+                <p>Обучение, процедуры и руководства для офицеров</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрая навигация -->
+    <section class="quick-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="#principles" class="nav-btn">📋 Основные принципы</a>
+                <a href="#equipment" class="nav-btn">🎒 Снаряжение</a>
+                <a href="#first-aid" class="nav-btn">🩹 Первая помощь</a>
+                <a href="#radio" class="nav-btn">📻 Рация</a>
+                <a href="#patrol" class="nav-btn">🚓 Патрулирование</a>
+                <a href="#arrest" class="nav-btn">⚖️ Арест и задержание</a>
+                <a href="#force" class="nav-btn">💪 Применение силы</a>
+                <a href="#structure" class="nav-btn">🏢 Структура</a>
+                <a href="#marks" class="nav-btn">🔤 Маркировки</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основные принципы -->
+    <section id="principles" class="manual-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Основные принципы работы</h2>
+            </div>
+            <div class="manual-content">
+                <p>При рядовой работе вы должны руководствоваться следующими принципами, вне зависимости от звания или должности:</p>
+
+                <div class="principle-card">
+                    <h3>🔍 Субординация и руководство</h3>
+                    <p>Все нерядовые ситуации направляются к супервайзерам. Это же касается и главенства на длительных ситуациях. Не знаете, как поступить - запрашивайте помощь начальства. За отсутствием таковых - направляйте ситуацию старшим офицерам на смене.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🧠 Объективность и самообладание</h3>
+                    <p>Смотрите на ситуации объективно: неумение держать себя в руках и здраво оценивать окружающую обстановку - неприемлемое свойство для госслужащего. Горячий пыл может привести к критичным последствиям. Иногда к жертвам.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🤝 Уважение и человечность</h3>
+                    <p>Относитесь к своим коллегам с уважением. Соблюдайте субординацию как в отношении гражданских, так и старших по званию. Не используйте армейский вид обращений: 'Так точно', 'Никак нет' - подобное в полиции не практикуется. Вы - человек, а не робот.</p>
+                    <div class="note">
+                        Помните о понятии 'Чтобы поймать преступника - нужно думать как преступник'. Люди совершают преступления своим человеческим фактором. Точно такая же человечность поможет их решить, наладить контакт со свидетелями и подозреваемыми.
+                    </div>
+                </div>
+
+                <div class="principle-card">
+                    <h3>💪 Уверенность и бдительность</h3>
+                    <p>Действуйте уверенно: не давайте сторонним раздражителям выбить себя из колеи. Помните, что от вашей работы прямо зависит безопасность окружающих. Растеряетесь или потеряете бдительность - криминал неприменно этим воспользуется.</p>
+                </div>
+
+                <div class="principle-card important">
+                    <h3>⚖️ Применение силы и допросы</h3>
+                    <p>Физическую силу запрещается применять к тем, кто не оказывает сопротивления при задержании. Возможные допросы обязаны проходить в один присест, без выключения камер и причинению травм к подозреваемому. Срок обвиняемого обязан быть уменьшен, если тот приходит сдаваться и/или работает со следствием.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Снаряжение -->
+    <section id="equipment" class="manual-section" style="background: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Снаряжение патрульного</h2>
+            </div>
+            <div class="manual-content">
+                <p>Перед началом работы, нужно научиться пользоваться своим снаряжением. Теория поможет справиться со всеми задачами, встречаемыми во время вашей работы.</p>
+
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="procedure-icon">🔫</div>
+                        <h4>Glock 17</h4>
+                        <p>Калибр 9x19. Основное огнестрельное оружие. Его вы берёте с собой на службу всегда, когда можете.</p>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="procedure-icon">🦯</div>
+                        <h4>Дубинка</h4>
+                        <p>Вспомогательный инструмент для навязывания послушания.</p>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="procedure-icon">⚡</div>
+                        <h4>Тайзер</h4>
+                        <p>Электрошоковое оружие малолетального действия. Это ваше главное средство против нарушителей общественного порядка.</p>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="procedure-icon">🔗</div>
+                        <h4>Наручники</h4>
+                        <p>Используются при задержании подозреваемых. Надеваются на человека при задержании.</p>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="procedure-icon">🩺</div>
+                        <h4>Аптечка ПМП</h4>
+                        <p>Для оказания первой медицинской помощи. Используется для оказания ПМП.</p>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="procedure-icon">🚪</div>
+                        <h4>Таран</h4>
+                        <p>С его помощью выбиваются двери и замочные механизмы автомобилей.</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <h4>⚠️ Важные примечания по снаряжению:</h4>
+                    <ul>
+                        <li><strong>Тяжёлое оружие</strong> нельзя брать в патруль без соответствующего экзамена</li>
+                        <li><strong>Патроны</strong> выдаются арсеналом раз в некоторое время</li>
+                        <li><strong>Бронежилет</strong> надевается только во время экстренных ситуаций</li>
+                        <li><strong>Наручники</strong> - перед тем как задерживать, убедитесь, что у вас есть реальный на то повод. Начальство не защитит вас при несущественных причинах.</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <h4>👕 Форма и экипировка:</h4>
+                    <ul>
+                        <li><strong>Бронежилет:</strong> Обеспечивает защиту, но тяжёлый. Не носите его всю службу.</li>
+                        <li><strong>Куртка:</strong> Верхний слой одежды, рекомендуется в холодное время года.</li>
+                        <li><strong>Рубашка:</strong> Лейтенанты и выше носят белую, обычные офицеры - тёмно-синюю.</li>
+                        <li><strong>Одежда</strong> закупается вами под ваши личные характеристики.</li>
+                        <li><strong>Полицейским выдаются:</strong> Фуражка, личный жетон, значок, петлицы, плечевой микрофон.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Первая помощь -->
+    <section id="first-aid" class="manual-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Первая медицинская помощь (ПМП)</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>🩺 Основные принципы</h3>
+                    <p>Ваша стандартная аптечка поможет максимум стабилизировать пару человек. <strong>Всегда сначала помогайте коллегам</strong>, чтобы уже они помогли вам.</p>
+                    <p>При оказании первой медицинской помощи, в первую очередь уделите время осмотру пострадавшего. Дальше, действуйте по ситуации:</p>
+                </div>
+
+                <div class="procedure-grid">
+                    <div class="procedure-item">
+                        <div class="procedure-icon">🩸</div>
+                        <h4>Внешнее кровотечение</h4>
+                        <p>Требует наложения бинтов. Одного достаточно.</p>
+                    </div>
+                    <div class="procedure-item">
+                        <div class="procedure-icon">🥶</div>
+                        <h4>Обморожение</h4>
+                        <p>Справляется Адреналином.</p>
+                    </div>
+                    <div class="procedure-item">
+                        <div class="procedure-icon">💊</div>
+                        <h4>Наркотические воздействия</h4>
+                        <p>Необходим расспрос свидетелей - нужно точно знать с чем бороться.</p>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <h4>💉 Действия при наркотических отравлениях:</h4>
+                    <ul>
+                        <li><strong>От опиоидов:</strong> спасает Налоксон</li>
+                        <li><strong>От кокаиновых субстанций:</strong> помогает Адреналин</li>
+                        <li><strong>Отравление амфетаминами:</strong> смертельно</li>
+                    </ul>
+                    <p class="procedure-note">Спросите, какие вещества принимал пострадавший. Как только стабилизируется состояние пострадавшего - приступайте к СЛР.</p>
+                </div>
+
+                <div class="note important">
+                    <h4>📞 Важно:</h4>
+                    <p>Держите контакт с парамедиками, вызывайте их даже если справляетесь с пострадавшим самим.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Рация -->
+    <section id="radio" class="manual-section" style="background: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Рация и связь</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>📻 Использование рации</h3>
+                    <p>Используется для связи сотрудников друг с другом. Рация имеет по 3 канала на каждую структуру. Используя рацию, передавайте информацию быстро и чётко: <strong>Позывной - Местоположение - Происшествие</strong> - от этого зависит успешность операции.</p>
+                </div>
+
+                <div class="radio-channels">
+                    <div class="channel-category">
+                        <h4>Каналы полиции (PD)</h4>
+                        <div class="channel-item">
+                            <span class="channel-name">PD1</span>
+                            <span class="channel-desc">Основной канал, используется офицерами во время патрулирования</span>
+                        </div>
+                        <div class="channel-item">
+                            <span class="channel-name">PD2</span>
+                            <span class="channel-desc">Запасной канал, для более удобной коммуникации в долгих ситуациях</span>
+                        </div>
+                        <div class="channel-item">
+                            <span class="channel-name">PD3</span>
+                            <span class="channel-desc">Канал для связи со старшим составом участка</span>
+                        </div>
+                    </div>
+
+                    <div class="channel-category">
+                        <h4>Специальные каналы</h4>
+                        <div class="channel-item">
+                            <span class="channel-name">COM</span>
+                            <span class="channel-desc">Канал для объявлений, важных оповещений. Доступ только у Супервайзера</span>
+                        </div>
+                        <div class="channel-item">
+                            <span class="channel-name">FD1</span>
+                            <span class="channel-desc">Канал для связи с пожарными</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <h4>🔫 Тяжёлое оружие и патроны:</h4>
+                    <ul>
+                        <li><strong>Тяжёлое оружие</strong> нельзя брать в патруль. Используется в экстренных ситуациях: штурм, предотвращение серьезного преступления. Травматический дробовик относится к 5-й стадии применения силы.</li>
+                        <li><strong>Тяжёлое оружие</strong> не доступно сотрудникам, не прошедшим соответствующий экзамен.</li>
+                        <li><strong>Патроны</strong> - арсенал выдаёт 3 снаряженных магазина или коробку картечи для дробовика исключительно вам, под обязательство не передавать их никому.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Патрулирование -->
+    <section id="patrol" class="manual-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Патрулирование и организация</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>🚓 Организация патруля</h3>
+                    <p>Перед выходом в патруль, вам нужно подойти к супервайзеру. Он назначит вам напарника, если имеется свободный офицер. Когда супервайзера нет - вам стоит найти напарника самостоятельно, при помощи рации. <strong>Выходить в патруль в одиночку не рекомендуется.</strong></p>
+                </div>
+
+                <div class="note">
+                    <h4>🔍 Проверка перед выходом в патруль:</h4>
+                    <ol>
+                        <li>Проверить оружие и запасные магазины</li>
+                        <li>Убедиться в наличии аптечки и тайзера</li>
+                        <li>Распределить вторичное снаряжение между членами экипажа</li>
+                        <li>Обеспечить себя продовольствием</li>
+                        <li>Рекомендуется иметь минимум аптечку и тайзер на один патрульный экипаж</li>
+                    </ol>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🚗 Служебный транспорт</h3>
+                    <p>Служебным транспортом офицера является <strong>Ford Crown Victoria</strong>. Ваш патрульный транспорт - такой же инструмент, как остальное снаряжение.</p>
+                    <div class="note">
+                        <ul>
+                            <li>Не брезгуйте использовать патрульную машину как укрытие</li>
+                            <li>Перевозите улики в багажнике, а не у себя в куртке</li>
+                            <li>Все запросы по транспорту производятся в терминале на нижней парковке участка</li>
+                            <li>Опытные офицеры имеют привычку покупать в автомобиле огнетушитель, коробки и медицинские повязки</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="principle-card warning">
+                    <h3>🚨 Правила погони:</h3>
+                    <ul>
+                        <li>Активные погони разрешены только на специализированных участках дороги: тоннели, автомагистрали и другие малонаселённые городские зоны</li>
+                        <li>Предпочтите дорожные перекрытия PIT и RAM маневрам</li>
+                        <li>Незначительные правонарушения не должны сопровождаться погонями</li>
+                        <li>Всегда контролируйте скорость автомобиля</li>
+                        <li>Оставляйте патрульный автомобиль на нижней парковке участка</li>
+                        <li>Не оставляйте свой транспорт без присмотра надолго</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🚧 Организация оцепления</h3>
+                    <p><strong>Оцепление - перекрытие территории.</strong> При оцеплении приоритетом является обеспечение безопасности своим коллегам и возможным близстоящим гражданам.</p>
+                    
+                    <div class="note">
+                        <h4>📋 Процедура оцепления:</h4>
+                        <ol>
+                            <li>Рассредоточить офицеров по опасным участкам</li>
+                            <li>Использовать автомобили для закрытия территории</li>
+                            <li>Отогнать зевак от линии оцепления</li>
+                            <li>Просить помощи у пожарного департамента при необходимости</li>
+                            <li>Задерживать нарушителей линии оцепления</li>
+                            <li>В багажниках патрульных юнитов лежат конусы с лентами</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="principle-card important">
+                    <h3>🚨 Эвакуация:</h3>
+                    <p>Иногда возникают ситуации, когда оцепить территорию физически не получится из-за крайне явной опасности. В такие моменты, на подготовку нет времени.</p>
+                    <ul>
+                        <li>Именно вам придётся выводить гражданских из затронутых зданий</li>
+                        <li>Если граждане не собираются вас слушать - используйте тайзер с наручниками</li>
+                        <li>Действуйте по пути наименьшего сопротивления для достижения результата в кратчайшие сроки</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Арест и задержание -->
+    <section id="arrest" class="manual-section" style="background: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Арест и задержание</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>⚖️ Процессуальный кодекс</h3>
+                    <p><strong>Арест</strong> - это мера наказания в виде задержания и дальнейшего ограничения свободы. Задерживают гражданина для выяснения обстоятельств, а арест уже назначается судом. Оформление ареста происходит в приёмной участка.</p>
+                </div>
+
+                <div class="principle-card important">
+                    <h3>📜 Правило Миранды:</h3>
+                    <p><em>"Вы имеете право хранить молчание. Всё, что вы скажете - может и будет использовано против вас в суде. Вы имеете право на один телефонный звонок. Вы имеете право на присутствие адвоката во время допроса. Если вы не можете оплатить услуги адвоката, то он будет предоставлен вам государством. Ваши права вам поняты?"</em></p>
+                </div>
+
+                <div class="note">
+                    <h4>📋 Порядок задержания гражданина:</h4>
+                    <ol>
+                        <li>Надеть наручники на подозреваемого</li>
+                        <li>Произвести первичный обыск. Изъять оружие при нахождении такового</li>
+                        <li>Зачитать подозреваемому его Конституционные права (Правило Миранды)</li>
+                        <li>Посадить подозреваемого в наручниках в служебное авто, доставить в полицейский участок</li>
+                        <li>По прибытии произвести вторичный обыск. Изъять оставшиеся запрещённые предметы</li>
+                        <li>Произвести допрос подозреваемого в присутствии адвоката, если его требует задержанный</li>
+                        <li>При подтверждении виновности, произвести арест и поместить подозреваемого в тюремную камеру</li>
+                    </ol>
+                </div>
+
+                <div class="note warning">
+                    <h4>⚠️ Важные примечания:</h4>
+                    <ul>
+                        <li>Вы обязаны уведомить задерживаемого о том, что он задержан - и в подозрении на что</li>
+                        <li>При угрозе жизни любому из субъектов задержания, обыск и права можно провести после стабилизации ситуации</li>
+                        <li>Вы не имеете права удерживать человека в допросной против его воли более десяти минут без адвоката</li>
+                        <li>Не задерживайте на большое количество времени подозреваемого, если вы не особо уверены в обвинениях</li>
+                        <li>Вы не имеете права отказывать гражданину в реализации его прав</li>
+                        <li>Вы не обязаны вытягивать желание пользоваться своими правами из подозреваемых</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Применение силы -->
+    <section id="force" class="manual-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Применение силы</h2>
+            </div>
+            <div class="manual-content">
+                <div class="force-stages">
+                    <div class="force-stage">
+                        <div class="stage-number">1</div>
+                        <div class="stage-content">
+                            <h4>Присутствие</h4>
+                            <p>Иногда, достаточно одного только присутствия офицера, дабы де-эскалировать ситуацию. По прибытии на сцену спросите у окружающих, всё ли хорошо. Наблюдайте, давайте своим присутствием на неуверенных в себе нарушителей. Ни в коем случае не говорите "Кто вызывал полицию?" - это настроит против вас обычных прохожих.</p>
+                        </div>
+                    </div>
+
+                    <div class="force-stage">
+                        <div class="stage-number">2</div>
+                        <div class="stage-content">
+                            <h4>Приказ</h4>
+                            <p>На этой стадии происходят аресты первого типа - с содействием подозреваемого и без излишней физической силы. Покажите, что вы авторитет и вас нужно слушать. Говорите чётко, без бунтарности и сленга.</p>
+                        </div>
+                    </div>
+
+                    <div class="force-stage">
+                        <div class="stage-number">3</div>
+                        <div class="stage-content">
+                            <h4>Сила без спецсредств</h4>
+                            <p>На этой стадии происходит арест второго типа - когда ваша цель легко вооружена, не слушается или даёт вам отпор. Не забудьте обыскать задержанного - вдруг, это наркотики являются причиной резкого поведения подозреваемого.</p>
+                        </div>
+                    </div>
+
+                    <div class="force-stage">
+                        <div class="stage-number">4</div>
+                        <div class="stage-content">
+                            <h4>Малолетальные спецсредства</h4>
+                            <p>Когда ваши слова совсем игнорируют, из ваших рук вырываются, и человеческих сил не хватает - пора использовать табельные средства. Резиновая дубинка, перцовый баллончик, тайзер - не важно, что вы решитесь использовать. Важно предупредить об использовании. Желательно несколько раз.</p>
+                        </div>
+                    </div>
+
+                    <div class="force-stage critical">
+                        <div class="stage-number">5</div>
+                        <div class="stage-content">
+                            <h4>Летальные спецсредства</h4>
+                            <p>Аресты третьего типа производятся только при ощутимой опасности жизням окружающих и/или офицеров. Когда появляется шанс оказаться застреленным - пора доставать пистолет. Когда появляется прямая опасность оказаться застреленным - пора наводить пистолет на опасность. И только когда кто-то наводит оружие на вас или собирается ранить другого - пора стрелять.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="principle-card important">
+                    <h3>🔫 Принципы обращения с оружием:</h3>
+                    <ol>
+                        <li>Всегда обращайтесь с оружием, как с заряженным</li>
+                        <li>Не направляйте оружие туда, куда не собираетесь стрелять</li>
+                        <li>Ставьте палец на спусковой крючок только когда собираетесь стрелять</li>
+                        <li>Знайте свою цель и что находится за ней</li>
+                    </ol>
+                </div>
+
+                <div class="note warning">
+                    <h4>🚫 Запрещено:</h4>
+                    <ul>
+                        <li>Стрельба по автомобилям категорически запрещена</li>
+                        <li>Не применяйте оружие тогда, когда этого можно избежать</li>
+                        <li>Применение оружия должно ограничиваться ситуациями, в которых офицеру или гражданским грозит прямая опасность</li>
+                        <li>Категорически запрещается размахивать оружием просто так</li>
+                        <li>Никаких предупредительных выстрелов</li>
+                        <li>Травматический дробовик тоже способен убить - управляйте им с осторожностью</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <h4>🎯 Рекомендации при задержаниях:</h4>
+                    <ul>
+                        <li>Держите контакт со своими напарниками</li>
+                        <li>Запрашивайте подкрепление, когда ситуация собирается выйти из-под вашего контроля</li>
+                        <li>Всегда держите руку на кобуре при разговоре с подозреваемым</li>
+                        <li>Занимайте укрытия при опасности</li>
+                        <li>Поворачивайте ситуации в свою сторону</li>
+                        <li>Не запускайте преступников себе за спину</li>
+                        <li>Следите за перекрёстным огнем</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Структура -->
+    <section id="structure" class="manual-section" style="background: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Структура департамента</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>🏢 Бюро NYPD</h3>
+                    <div class="bureau-grid">
+                        <div class="bureau-item">
+                            <h4>🚓 Бюро патрульной службы</h4>
+                            <p>Самое многочисленное и основное бюро структуры. Занимается пешим и автомобильным патрулированием, поддержанием порядка в городе и за его пределами.</p>
+                        </div>
+                        <div class="bureau-item">
+                            <h4>👥 Вспомогательная полиция</h4>
+                            <p>Волонтерское подразделение патрульного бюро. Помогает основному патрульному бюро, заменяет важных сотрудников своей массовостью.</p>
+                        </div>
+                        <div class="bureau-item">
+                            <h4>🕵️ Детективное бюро</h4>
+                            <p>Бюро, ведущее следственную деятельность. В их обязанности входит предотвращение, обнаружение и расследование преступлений.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p><strong>Примечание:</strong> Офицеры патрульного бюро равны по званию с детективами и не сравнимы по должностям. Это сотрудники разных бюро под разным шефством, работающие сообща.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>⭐ Иерархия званий</h3>
+                    <div class="rank-grid">
+                        <div class="rank-item">
+                            <h4>👮 Офицер Вспомогательной Полиции</h4>
+                            <p>Сотрудник, оказывающий помощь Департаменту в участке и за его пределами. Занимается оцеплениями во время проведения особых мероприятий, снабжением заключенных продовольствием и обеспечением безопасности окружающих.</p>
+                        </div>
+                        <div class="rank-item">
+                            <h4>👮‍♂️ Офицер/Детектив</h4>
+                            <p>Сотрудник, занимающийся базовыми патрульными/следственными обязанностями. В некоторых случаях, офицеры-наставники занимаются обучением младших сотрудников.</p>
+                        </div>
+                        <div class="rank-item">
+                            <h4>⭐ Сержант</h4>
+                            <p>Офицер, успешно проявляющий инициативу в экстренных ситуациях. Занимается координацией личного состава, проводит брифинги и командует отрядами при штурме преступных формирований.</p>
+                        </div>
+                        <div class="rank-item">
+                            <h4>🌟🌟 Лейтенант</h4>
+                            <p>Погружается в бумажную работу с головой. Занимается узкоспециализированной деятельностью - связи с общественностью, внутренние дела участка или отдел кадров. Часто заменяет капитана.</p>
+                        </div>
+                        <div class="rank-item">
+                            <h4>🌟🌟🌟 Капитан</h4>
+                            <p>Начальник участка. Занимается принятием и распределением бюджета, выдачей премий, проведением особых мероприятий, принятием программ обучения.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🎓 Программа обучения FTP</h3>
+                    <p><strong>FTP (Field Training Program)</strong> - программа обучения младших офицеров, созданная для повышения и последующей проверки квалификации. Программу обучения обязан пройти каждый офицер, чтобы стать компетентным сотрудником.</p>
+                    
+                    <div class="note">
+                        <p><strong>FTO (Field Training Officer)</strong> - офицер-наставник, доказавший способность обучать младших сотрудников. Его задача - передать практические умения с опытом сотруднику, имеющему базовые знания о работе полиции.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Маркировки -->
+    <section id="marks" class="manual-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Маркировки патрулей и позывные</h2>
+            </div>
+            <div class="manual-content">
+                <div class="principle-card">
+                    <h3>🔤 Система позывных NYPD</h3>
+                    <p>Позывные NYPD работают по схеме <strong>'Номер участка - Патрульный юнит'</strong>. Вместо номеров для юнитов используются буквы фонетического алфавита NYPD, по порядку.</p>
+                </div>
+
+                <div class="note">
+                    <h4>🎯 Особые маркировки:</h4>
+                    <ul>
+                        <li><strong>92-Squad (Сквад):</strong> Назначается детективам</li>
+                        <li><strong>92-Sergeant/Lieutenant/Captain:</strong> Для вызова старших по званию</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <h3>🔡 Фонетический алфавит NYPD</h3>
+                    <div class="phonetic-grid">
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">A</span>
+                            <span class="phonetic-word">Adam (Адам)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">B</span>
+                            <span class="phonetic-word">Boy (Бой)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">C</span>
+                            <span class="phonetic-word">Charles (Чарльз)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">D</span>
+                            <span class="phonetic-word">David (Дэвид)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">E</span>
+                            <span class="phonetic-word">Eddie (Эдди)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">F</span>
+                            <span class="phonetic-word">Frank (Фрэнк)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">G</span>
+                            <span class="phonetic-word">George (Джордж)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">H</span>
+                            <span class="phonetic-word">Henry (Генри)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">I</span>
+                            <span class="phonetic-word">Ida (Ида)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">J</span>
+                            <span class="phonetic-word">John (Джон)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">K</span>
+                            <span class="phonetic-word">King (Кинг)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">L</span>
+                            <span class="phonetic-word">Larry (Ларри)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">M</span>
+                            <span class="phonetic-word">Mike (Майк)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">N</span>
+                            <span class="phonetic-word">Nora (Нора)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">O</span>
+                            <span class="phonetic-word">Oscar (Оскар)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">P</span>
+                            <span class="phonetic-word">Peter (Питер)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">Q</span>
+                            <span class="phonetic-word">Queen (Квин)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">R</span>
+                            <span class="phonetic-word">Robert (Роберт)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">S</span>
+                            <span class="phonetic-word">Sam (Сэм)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">T</span>
+                            <span class="phonetic-word">Thomas (Томас)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">U</span>
+                            <span class="phonetic-word">Union (Юнион)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">V</span>
+                            <span class="phonetic-word">Victor (Виктор)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">W</span>
+                            <span class="phonetic-word">William (Вильям)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">X</span>
+                            <span class="phonetic-word">X-ray (Экс-рэй)</span>
+                        </div>
+                        <div class="phonetic-item">
+                            <span class="phonetic-letter">Y</span>
+                            <span class="phonetic-word">Yellow (Еллоу)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <div class="btn back-btn" onclick="history.back()">← Назад</div>
+                    <a href="index.html" class="btn">На главную</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Полиция Нью-Йорка</h3>
+                    <p>Департамент полиции Нью-Йорка стремится защищать жизнь и имущество наших сограждан и предотвращать преступность и страх, обеспечивая безопасную и защищенную среду.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#about">О нас</a></li>
+                        <li><a href="index.html#services">Службы</a></li>
+                        <li><a href="index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контактная информация</h3>
+                    <ul class="footer-links">
+                        <li>Brooklin 29 sector, 92 police deportament</li>
+                        <li>Телефон: 555-2424-22</li>
+                        <li>Email: FreeDrugs@gmail.com</li>
+                        <li>Экстренный вызов: 911</li>
+                        <li>Спец-связь: Conlex</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 20** Департамент полиции Нью-Йорка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

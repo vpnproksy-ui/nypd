@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>В разработке - NOIR GUIDE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Exo+2:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)), 
+                        url('gorodnoir.png') no-repeat center center/cover;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный фон с частицами */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 102, 0, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Контейнер */
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Картинка */
+        .image-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .under-construction-img {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ff6600;
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(255, 102, 0, 0.6);
+            }
+        }
+
+        .under-construction-img i {
+            font-size: 100px;
+            color: #ff6600;
+        }
+
+        /* Текст */
+        .title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #ff6600;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #aaa;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .sub-message {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        /* Кнопка */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(45deg, #ff6600, #ff8533);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.4);
+        }
+
+        .btn-back:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-back i {
+            font-size: 18px;
+        }
+
+        /* Футер */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 12px;
+            color: #444;
+            z-index: 1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 36px;
+            }
+            .message {
+                font-size: 18px;
+            }
+            .under-construction-img {
+                width: 150px;
+                height: 150px;
+            }
+            .under-construction-img i {
+                font-size: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 28px;
+            }
+            .message {
+                font-size: 16px;
+            }
+            .btn-back {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированный фон с частицами -->
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Картинка сверху -->
+        <div class="image-wrapper">
+            <div class="under-construction-img">
+                <i class="fas fa-tools"></i>
+            </div>
+        </div>
+
+        <!-- Надпись по центру -->
+        <h1 class="title">В разработке</h1>
+        <p class="message">Страница временно недоступна.</p>
+        <p class="sub-message">Пожалуйста, попробуйте позже.</p>
+
+        <!-- Кнопка назад -->
+        <button onclick="goBack()" class="btn-back">
+            <i class="fas fa-arrow-left"></i>
+            Вернуться назад
+        </button>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 NOIR GUIDE | By Conlex</p>
+    </div>
+
+    <script>
+        // Функция возврата на предыдущую страницу
+        function goBack() {
+            if (document.referrer && document.referrer !== '') {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Создание анимированных частиц
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 8 + 4 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+    </script>
+    <!-- ПЛАВНОЕ ПОЯВЛЕНИЕ СТРАНИЦЫ ИЗ ТЕМНОТЫ -->
+<script>
+    (function() {
+        // Создаём чёрный слой поверх всей страницы
+        const darkOverlay = document.createElement('div');
+        darkOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 999999;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        `;
+        document.body.appendChild(darkOverlay);
+        
+        // Скрываем содержимое страницы до анимации
+        document.body.style.visibility = 'hidden';
+        
+        // Небольшая задержка перед началом проявления
+        setTimeout(() => {
+            // Начинаем убирать темноту
+            darkOverlay.style.opacity = '0';
+            
+            // Показываем содержимое
+            document.body.style.visibility = 'visible';
+            
+            // Удаляем слой после завершения анимации
+            setTimeout(() => {
+                if (darkOverlay && darkOverlay.parentNode) {
+                    darkOverlay.remove();
+                }
+            }, 1300);
+        }, 100);
+    })();
+</script>
+<!-- НУАРНЫЙ ПЕРЕХОД С ФОТО НА ВЕСЬ ЭКРАН -->
+<script>
+    (function() {
+        window.addEventListener('load', function() {
+            // Находим все внутренние ссылки
+            const links = document.querySelectorAll('a[href^="cop1.html"], a[href^="index.html"], a[href^="guideorg.html"], a[href^="errorgmodla.html"], a[href$=".html"], a[href$=".png"]');
+            
+            links.forEach(link => {
+                if (link.href.includes('://') && !link.href.includes(window.location.hostname)) return;
+                if (link.getAttribute('href') === '#') return;
+                
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetUrl = this.getAttribute('href');
+                    
+                    // 1️⃣ СОЗДАЁМ КОНТЕЙНЕР ДЛЯ ФОТОГРАФИИ НА ВЕСЬ ЭКРАН
+                    const fullscreenImage = document.createElement('div');
+                    fullscreenImage.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: url('gorodnoir.png') no-repeat center center;
+                        background-size: cover;
+                        z-index: 99998;
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(fullscreenImage);
+                    
+                    // 2️⃣ ЗАТЕМНЯЮЩИЙ СЛОЙ (БУДЕТ ПЛАВНО ЗАТЕМНЯТЬ)
+                    const darkLayer = document.createElement('div');
+                    darkLayer.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: #000;
+                        z-index: 99999;
+                        opacity: 0;
+                        transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(darkLayer);
+                    
+                    // 3️⃣ ПОКАЗЫВАЕМ ФОТОГРАФИЮ
+                    setTimeout(() => {
+                        fullscreenImage.style.opacity = '1';
+                    }, 20);
+                    
+                    // 4️⃣ ЖДЁМ 0.5 СЕКУНДЫ, ЗАТЕМ НАЧИНАЕМ ЗАТЕМНЕНИЕ
+                    setTimeout(() => {
+                        darkLayer.style.opacity = '1';
+                    }, 500);
+                    
+                    // 5️⃣ ПЕРЕХОДИМ НА НОВУЮ СТРАНИЦУ
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 1700);
+                    
+                    // Блокируем скролл
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // 6️⃣ АНИМАЦИЯ ВЪЕЗДА НОВОЙ СТРАНИЦЫ
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                document.body.style.opacity = '0';
+                document.body.style.overflow = 'hidden';
+                
+                const enterDark = document.createElement('div');
+                enterDark.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: #000;
+                    z-index: 99999;
+                    opacity: 1;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(enterDark);
+                
+                setTimeout(() => {
+                    document.body.style.transition = 'opacity 0.6s ease';
+                    document.body.style.opacity = '1';
+                    
+                    enterDark.style.transition = 'opacity 0.8s ease';
+                    enterDark.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        enterDark.remove();
+                        document.body.style.overflow = '';
+                    }, 900);
+                }, 50);
+            }
+        });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правовые прецеденты - NYPD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Hero секция */
+        .page-hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 85, 164, 0.85)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Основной контент */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        /* Вступление */
+        .intro-text {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border-left: 5px solid #003366;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Сетка прецедентов */
+        .precedents-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .precedent-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .precedent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .precedent-content {
+            padding: 30px;
+        }
+
+        .precedent-text {
+            margin-bottom: 20px;
+        }
+
+        .precedent-text p {
+            color: #333;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .precedent-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #003366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .precedent-link:hover {
+            background: #0055a4;
+        }
+
+        .precedent-link.disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .precedent-link.disabled:hover {
+            background: #6c757d;
+            transform: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* Кнопки навигации */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+        }
+
+        .back-btn {
+            background: #003366;
+            color: white;
+        }
+
+        .back-btn:hover {
+            background: #0055a4;
+        }
+
+        /* Футер */
+        footer {
+            background: #002244;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        /* Адаптивность */
+        @media (min-width: 768px) {
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+            nav {
+                width: auto;
+                margin-top: 0;
+            }
+            nav ul {
+                justify-content: flex-end;
+            }
+            nav li {
+                margin-left: 20px;
+            }
+            .page-hero h1 {
+                font-size: 3rem;
+            }
+            .page-hero p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            .precedent-content {
+                padding: 20px;
+            }
+            .page-hero {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            .intro-text {
+                padding: 25px;
+            }
+            .precedent-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="cop1.html">Главная</a></li>
+                        <li><a href="cop1.html#about">О нас</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                        <li><a href="cop1.html#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Правовые прецеденты</h1>
+                <p>Судебные решения, формирующие правовую систему</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Судебные прецеденты</h2>
+            </div>
+
+            <div class="intro-text">
+                <p>Наша законодательная система не совершенна. В будущем обязательно найдётся что-то не продуманное. А когда мы придумаем решение — то живём после инцидента, как ни в чём ни бывало. Людей же уже осудили? Значит, есть за что.</p>
+                <p style="margin-top: 15px;"><strong>Прецеденты, видите ли. Разве нарушают идут чтобы менять законодательство?</strong></p>
+            </div>
+
+            <div class="precedents-grid">
+
+                <!-- Прецедент 1: Правило Миранды -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Перед допросом полицией, подозреваемый обязан быть проинформирован о своих Конституционных правах. Отказ от прав должен закрепляться в письменной форме после информирования.</strong><br>
+                            Данная практика также известна как <em>«Правило Миранды»</em>.</p>
+                        </div>
+                        <a href="#" class="precedent-link" onclick="showTranscriptModal('miranda'); return false;">
+                            📜 Прочитать транскрипцию судебного дела
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 2: Терри-стоп -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Полиция имеет право на задержание гражданского лица, если у них есть обоснованное подозрение о совершённом или готовящемся преступлении; полиция имеет право на последующий обыск при наличии обоснованных подозрений на вооружённость и опасность задержанного, без нарушения этими действиями Четвёртой Поправки.</strong><br>
+                            Данная практика также известна как <em>«Терри-стоп»</em>.</p>
+                        </div>
+                        <a href="#" class="precedent-link" onclick="showTranscriptModal('terry'); return false;">
+                            📜 Прочитать транскрипцию судебного дела
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 3: Передача оружия -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Только законный владелец оружия имеет право на его использование. Воспрещается временная передача оружия другому лицу, вне зависимости от причины, за исключением случаев, защищаемых Второй Поправкой.</strong></p>
+                        </div>
+                        <a href="#" class="precedent-link" onclick="showTranscriptModal('weapon'); return false;">
+                            📜 Прочитать транскрипцию судебного дела
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 4: Единый формат документа -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Создание единого формата документа идентификации личности необходимо для поддержания конституционного строя, исключения случаев кражи личности, и прозрачности в исполнении закона. Все сведения граждан необходимо связывать между ведомствами через новый общий федеральный сервис.</strong></p>
+                        </div>
+                        <a href="#" class="precedent-link" onclick="showTranscriptModal('identity'); return false;">
+                            📜 Прочитать транскрипцию судебного дела
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 5: Приостановка судов присяжных -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Суды крупных городов имеют право временно приостановить проведение судов присяжных (жюри), при доказательстве наличия уровня преступности, способного нарушить справедливость и непредвзятость судебного процесса. Право позволяет проводить заседания в закрытом виде, вне зависимости от характера спора и вида суда.</strong></p>
+                        </div>
+                        <a href="#" class="precedent-link" onclick="showTranscriptModal('jury'); return false;">
+                            📜 Прочитать транскрипцию судебного дела
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 6: Гражданский арест -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Гражданский арест в густо-населённых территориях и крупных городах приравнивается к взятию заложника. Гражданское лицо имеет право содействовать полицейскому, если тому чётко требуется поддержка — и он сам запросил её у гражданина, в виду отсутствия иных способов поддержать порядок.</strong></p>
+                        </div>
+                        <a href="#" class="precedent-link disabled" onclick="return false;">
+                            📜 В данный момент, транскрипция недоступна для чтения
+                            <span class="badge">Скоро</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Прецедент 7: Адвокатская тайна -->
+                <div class="precedent-card">
+                    <div class="precedent-content">
+                        <div class="precedent-text">
+                            <p><strong>● Все сведения, полученные адвокатом от своего клиента во время их сотрудничества, защищены адвокатской тайной. Право на распространение какой-либо части информации остаётся за клиентом. Привилегия на неразглашение не действует на информацию, получение полицией которой может пресечь планируемое клиентом особо тяжкое преступление.</strong></p>
+                        </div>
+                        <a href="#" class="precedent-link disabled" onclick="return false;">
+                            📜 В данный момент, транскрипция недоступна для чтения
+                            <span class="badge">Скоро</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn back-btn" onclick="history.back()">← Назад</button>
+                <a href="cop1.html" class="btn">На главную</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Полиция Нью-Йорка</h3>
+                    <p>Департамент полиции Нью-Йорка стремится защищать жизнь и имущество наших сограждан и предотвращать преступность и страх, обеспечивая безопасную и защищенную среду.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="cop1.html">Главная</a></li>
+                        <li><a href="cop1.html#about">О нас</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                        <li><a href="cop1.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контактная информация</h3>
+                    <ul class="footer-links">
+                        <li>Brooklin 29 sector, 92 police deportament</li>
+                        <li>Телефон: 555-2424-22</li>
+                        <li>Email: FreeDrugs@gmail.com</li>
+                        <li>Экстренный вызов: 911</li>
+                        <li>Спец-связь: Conlex</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 20** Департамент полиции Нью-Йорка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для транскрипций -->
+    <div id="transcriptModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: white; max-width: 600px; width: 90%; border-radius: 15px; padding: 30px; position: relative; max-height: 80vh; overflow-y: auto;">
+            <button onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #666;">&times;</button>
+            <h3 style="color: #003366; margin-bottom: 20px;" id="modalTitle">Транскрипция судебного дела</h3>
+            <div id="modalBody" style="line-height: 1.6; color: #333;">
+                <!-- Содержание будет вставлено через JS -->
+            </div>
+            <button onclick="closeModal()" class="btn" style="margin-top: 25px; width: 100%;">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function showTranscriptModal(caseId) {
+            const modal = document.getElementById('transcriptModal');
+            const modalBody = document.getElementById('modalBody');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            const transcripts = {
+                miranda: {
+                    title: 'Дело Миранда против Аризоны (1966)',
+                    body: '<p><strong>Суть дела:</strong> Эрнесто Миранда был арестован по подозрению в похищении и изнасиловании. В ходе двухчасового допроса без адвоката он дал письменное признание. На допросе его не уведомили о праве хранить молчание и праве на адвоката.</p><p><strong>Решение Верховного суда:</strong> Пятая поправка защищает от самообвинения. Перед любым допросом подозреваемый должен быть предупреждён о праве хранить молчание и праве на адвоката. Отказ от прав должен быть добровольным, осознанным и письменно закреплённым.</p><p><strong>Значение прецедента:</strong> «Правило Миранды» стало обязательным для всех полицейских департаментов США, включая NYPD.</p>'
+                },
+                terry: {
+                    title: 'Дело Терри против Огайо (1968)',
+                    body: '<p><strong>Суть дела:</strong> Офицер Макфадден заметил трёх мужчин, которые вели себя подозрительно, присматриваясь к витрине магазина. Офицер остановил их, обыскал и обнаружил оружие. Защита утверждала, что обыск нарушил Четвёртую поправку.</p><p><strong>Решение Верховного суда:</strong> Полиция имеет право на кратковременное задержание и поверхностный обыск (pat-down), если есть обоснованное подозрение, что лицо вооружено и опасно. Для обыска не требуется вероятная причина (probable cause), достаточно «разумного подозрения».</p><p><strong>Значение прецедента:</strong> Легализовал «Терри-стоп» — процедуру остановки и обыска при подозрении на вооружённость.</p>'
+                },
+                weapon: {
+                    title: 'Дело о передаче огнестрельного оружия (Объединённые прецеденты)',
+                    body: '<p><strong>Суть дела:</strong> Ряд инцидентов, когда владельцы оружия передавали его третьим лицам для «временного пользования», что приводило к преступлениям с использованием переданного оружия. Суды рассматривали вопрос о границах Второй поправки.</p><p><strong>Решение:</strong> Только законный владелец оружия имеет право на его ношение и использование. Временная передача оружия другому лицу, вне зависимости от причины, запрещена, за исключением случаев прямой защиты жизни (например, передача оружия для отражения неизбежного нападения, когда владелец не может его использовать).</p><p><strong>Значение прецедента:</strong> Установлена ответственность владельца за любое использование его оружия другими лицами.</p>'
+                },
+                identity: {
+                    title: 'Дело о единой системе идентификации (Федеральный прецедент 2021)',
+                    body: '<p><strong>Суть дела:</strong> Участившиеся случаи кражи личности и мошенничества с использованием поддельных документов. Федеральное правительство предложило создание единого федерального сервиса для верификации граждан.</p><p><strong>Решение:</strong> Создание единого формата документа идентификации личности необходимо для поддержания конституционного строя, исключения случаев кражи личности и прозрачности в исполнении закона. Все сведения граждан должны связываться между ведомствами через общий федеральный сервис.</p><p><strong>Значение прецедента:</strong> Обязательная интеграция всех баз данных граждан между ведомствами.</p>'
+                },
+                jury: {
+                    title: 'Дело о приостановке судов присяжных (Городской прецедент)',
+                    body: '<p><strong>Суть дела:</strong> В крупных городах с высоким уровнем преступности возникали ситуации, когда присяжные подвергались давлению или запугиванию, что нарушало справедливость судебного процесса.</p><p><strong>Решение:</strong> Суды крупных городов имеют право временно приостановить проведение судов присяжных при доказательстве наличия уровня преступности, способного нарушить справедливость и непредвзятость судебного процесса. Право позволяет проводить заседания в закрытом виде, вне зависимости от характера спора и вида суда.</p><p><strong>Значение прецедента:</strong> Временное отступление от права на суд присяжных в условиях чрезвычайной криминогенной обстановки.</p>'
+                }
+            };
+            
+            if (transcripts[caseId]) {
+                modalTitle.textContent = transcripts[caseId].title;
+                modalBody.innerHTML = transcripts[caseId].body;
+            } else {
+                modalTitle.textContent = 'Транскрипция дела';
+                modalBody.innerHTML = '<p>Информация по данному делу временно недоступна. Пожалуйста, обратитесь в архив судебных решений.</p>';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('transcriptModal').style.display = 'none';
+        }
+        
+        // Закрытие по клику вне модального окна
+        window.onclick = function(event) {
+            const modal = document.getElementById('transcriptModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

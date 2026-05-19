@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мануал и Регламенты - NYPD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .page-hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 85, 164, 0.8)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Навигационные кнопки */
+        .quick-nav {
+            background: white;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #003366, #0055a4);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #0055a4, #003366);
+        }
+
+        .nav-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* Главное изображение */
+        .main-image-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .main-image-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 5px solid #003366;
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        .law-category {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-left: 5px solid;
+        }
+
+        .law-category.minor { border-left-color: #28a745; }
+        .law-category.light { border-left-color: #ffc107; }
+        .law-category.medium { border-left-color: #fd7e14; }
+        .law-category.serious { border-left-color: #dc3545; }
+        .law-category.critical { border-left-color: #6f42c1; }
+
+        .law-category h3 {
+            color: #003366;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .law-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .law-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .law-item.minor { border-left-color: #28a745; }
+        .law-item.light { border-left-color: #ffc107; }
+        .law-item.medium { border-left-color: #fd7e14; }
+        .law-item.serious { border-left-color: #dc3545; }
+        .law-item.critical { border-left-color: #6f42c1; }
+
+        .penalty {
+            display: inline-block;
+            background: #003366;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .uniforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .uniform-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .uniform-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .uniform-image {
+            height: 550px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        .uniform-imag {
+            height: 800px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        .uniform-imag img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+
+        .uniform-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+
+        .uniform-content {
+            padding: 25px;
+        }
+
+        .uniform-content h3 {
+            color: #003366;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .uniform-details {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .uniform-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .uniform-details li:before {
+            content: '•';
+            color: #003366;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+        }
+
+        .back-btn {
+            background: #003366;
+            color: white;
+            margin-right: 15px;
+        }
+
+        .back-btn:hover {
+            background: #0055a4;
+        }
+
+        .note {
+            background: #e8f4fd;
+            border-left: 4px solid #003366;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Контакты */
+        .contacts-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #003366;
+        }
+
+        .contact-item h4 {
+            color: #003366;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            margin-bottom: 5px;
+        }
+
+        .emergency-contact {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        footer {
+            background: #002244;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            nav li {
+                margin: 0 10px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .law-category {
+                padding: 25px 20px;
+            }
+
+            .uniforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .uniform-image {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="cop1.html">Главная</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Мануал и Регламенты</h1>
+                <p>Законы, процедуры и униформа подразделений NYPD</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрая навигация -->
+    <section class="quick-nav">
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="#laws" class="nav-btn">
+                    📚 Уголовный кодекс
+                </a>
+                <a href="#uniforms" class="nav-btn">
+                    👮 Униформа подразделений
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="btn back-btn" onclick="history.back()">← Назад</div>
+                <a href="polawsglav.html" class="btn">Обратно к Мануалам</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Главное изображение -->
+    <section class="main-image-section">
+        <div class="container">
+            <div class="main-image-container">
+                <img src="glav.png" alt="Структура NYPD" class="main-image">
+                <p class="image-caption">Организационная структура Департамента полиции Нью-Йорка</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="laws">
+        <div class="container">
+            <div class="section-title">
+                <h2>Уголовный Кодекс NYPD</h2>
+            </div>
+
+            <!-- Незначительные правонарушения -->
+            <div class="law-category minor">
+                <h3>Незначительные правонарушения</h3>
+                <div class="note">
+                    <strong>Примечание:</strong> За действия из этого списка полагается устное предупреждение или штраф (до 50$) при его игнорировании. Пока эти действия не угрожают жизни и здоровью человека - запрещается вести активную погоню за нарушителем; деяния нужно припомнить при более серьёзном нарушении с соответствующим завышением наказания.
+                </div>
+                <ul class="law-list">
+                    <li class="law-item minor">Нарушение ПДД <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Словесное домогательство, издевательство, оскорбление <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Намеренная дезинформация; ложные вызовы экстренных служб <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Проникновение на чужую/запретную территорию <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Нарушение общественного порядка <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Ношение тяжёлого оружия в общественном месте <span class="penalty">Штраф до $50</span></li>
+                    <li class="law-item minor">Владение оружием с автоматическим видом стрельбы* <span class="penalty">Штраф до $50</span></li>
+                </ul>
+                <div class="note">
+                    * Владение автоматическим оружием разрешается только гражданам с особой лицензией на производство оружия, либо специальным подразделениям правоохранительных органов.
+                </div>
+            </div>
+
+            <!-- Преступления лёгкого характера -->
+            <div class="law-category light">
+                <h3>Преступления лёгкого характера</h3>
+                <div class="note">
+                    За действия из этого списка полагается штраф до 200$. При систематических нарушениях (больше трёх включительно), или если эти действия привели к трагическим последствиям, мера наказания сменяется тюремным заключением.
+                </div>
+                <ul class="law-list">
+                    <li class="law-item light">Помеха исполнению закона <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Мелкое воровство <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Вандализм; хулиганство <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Драка в общественном месте <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Шантаж <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Неуплата штрафа <span class="penalty">Штраф до $200</span></li>
+                    <li class="law-item light">Отсутствие необходимых лицензий <span class="penalty">Штраф до $200</span></li>
+                </ul>
+            </div>
+
+            <!-- Преступления средней тяжести -->
+            <div class="law-category medium">
+                <h3>Преступления средней тяжести</h3>
+                <div class="note">
+                    При преступлениях средней тяжести применяется наказание в виде штрафа до 500$ или соответствующего тюремного срока.
+                </div>
+                <ul class="law-list">
+                    <li class="law-item medium">Побег с места преступления <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Угрозы жизни, имуществу, причинение вреда чужому имуществу <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Нападение или причинение вреда здоровью <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Похищение <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Взяточничество <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Превышение полномочий на позиции гос. служащего <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Хранение или производство запрещенных предметов (до 1кг) <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Угон автомобиля <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Воровство в крупном размере (от 200$) <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Хулиганство (Мародерство) <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Невыполнение обязательств по пожарной безопасности* <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Нарушение условий контракта, нарушение соглашения о неразглашении <span class="penalty">Штраф до $500</span></li>
+                    <li class="law-item medium">Использование оружия с приспособлениями, снижающими громкость стрельбы <span class="penalty">Штраф до $500</span></li>
+                </ul>
+                <div class="note">
+                    * Закон касается общественных мест. Проверку заведений имеет право проводить только инспектор пожарного департамента.
+                </div>
+            </div>
+
+            <!-- Тяжкие преступления -->
+            <div class="law-category serious">
+                <h3>Тяжкие преступления</h3>
+                <div class="note">
+                    За совершение тяжкого преступления следует наказание в виде штрафа до 800$ вместе с соответствующим тюремным сроком.
+                </div>
+                <ul class="law-list">
+                    <li class="law-item serious">Грабеж <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Вымогательство; рэкет <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Нанесение увечий; членовредительство; изнасилование <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Доведение до суицида <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Непреднамеренное убийство <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Поджоги <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Коррупция в крупных размерах <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Хранение или производство запрещенных предметов (от 1кг) <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Участие в запрещенных или преступных организациях <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Участие в массовых беспорядках <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Продажа оружия нелицензированному покупателю* <span class="penalty">Штраф до $800</span></li>
+                    <li class="law-item serious">Незаконная передача оружия, практическая эксплуатация чужого оружия <span class="penalty">Штраф до $800</span></li>
+                </ul>
+                <div class="note">
+                    * Сама покупка не является противозаконным действием. Оружие, являющееся законным, изымается до устранения причин задержания.
+                </div>
+            </div>
+
+            <!-- Особо тяжкие преступления -->
+            <div class="law-category critical">
+                <h3>Особо тяжкие преступления</h3>
+                <div class="note">
+                    Доказанная вина в совершении особо тяжкого преступления влечёт за собой штраф до 1500$, соответствующий тюремный срок и не обжалуется судом.
+                </div>
+                <ul class="law-list">
+                    <li class="law-item critical">Умышленное убийство, массовое убийство <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Организация преступных формирований <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Организация массовых беспорядков <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Отравление; пытки; терроризм <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Попытка государственного переворота <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Преступление против человечества <span class="penalty">Штраф до $1500</span></li>
+                    <li class="law-item critical">Незаконный оборот оружия, манипуляции с серийным номером оружия <span class="penalty">Штраф до $1500</span></li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>Общее примечание:</strong> Соучастие в преступлении приравнивается к совершению этого преступления.
+            </div>
+
+            <div class="btn back-btn" onclick="history.back()">← Назад</div>
+            <a href="index.html" class="btn">На главную</a>
+        </div>
+    </section>
+
+    <section id="uniforms" style="background: #f0f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Униформа подразделений</h2>
+            </div>
+
+            <div class="uniforms-grid">
+                <!-- Вспомогательная полиция -->
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="auxt.jpg" alt="Вспомогательная полиция">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Кандидат на вступление в полицию</h3>
+                        <ul class="uniform-details">
+                            <li>Синяя рубашка с нашивками NYPD</li>
+                            <li>Черный галстук</li>
+                            <li>Темно-синие брюки</li>
+                            <li>Нашивка "AUXILIARY POLICE"</li>
+                            <li>Черные матовые туфли</li>
+                            <li>Значок на груди - отсутствует</li>
+                            <li>Отсутствие головного убора</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Патрульное бюро -->
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="po.jpg" alt="Патрульное бюро">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Вспомогательная полиция</h3>
+                        <ul class="uniform-details">
+                            <li>Темно-синяя форменная рубашка</li>
+                            <li>Черный галстук</li>
+                            <li>Синие тактические брюки(Тактический пояс)</li>
+                            <li>Служебный пояс с оборудованием</li>
+                            <li>Патрульные ботинки</li>
+                            <li>Звездообразный жетон на груди</li>
+                            <li>Нашивка "AUXILIARY POLICE"</li>
+                            <li>Фуражка с серебрянной кокардой</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="pop.jpg" alt="Патрульное бюро">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Патрульное бюро</h3>
+                        <ul class="uniform-details">
+                            <li>Темно-синяя форменная рубашка</li>
+                            <li>Черный галстук</li>
+                            <li>Синие тактические брюки</li>
+                            <li>Тактический пояс с оборудованием</li>
+                            <li>Патрульные ботинки</li>
+                            <li>Серебрянный значок на груди</li>
+                            <li>Нашивка "NYPD"</li>
+                            <li>Фуражка с серебрянной кокардой</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Детективы -->
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="dt.png" alt="Детективы">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Детективы</h3>
+                        <ul class="uniform-details">
+                            <li>Гражданская одежда (костюм, casual)</li>
+                            <li>Скрытое ношение оружия</li>
+                            <li>Жетон на цепочке или в кобуре</li>
+                            <li>Наручники в кобуре</li>
+                            <li>Рация скрытого ношения</li>
+                            <li>Тактический жилет под одеждой (по необходимости)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="sg.png" alt="Сержанты">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Сержанты</h3>
+                        <ul class="uniform-details">
+                            <li>Темно-синяя форменная рубашка</li>
+                            <li>Черный галстук</li>
+                            <li>Синие тактические брюки</li>
+                            <li>Тактический пояс с оборудованием</li>
+                            <li>Патрульные ботинки</li>
+                            <li>Золотой значок на груди</li>
+                            <li>Нашивка "NYPD"</li>
+                            <li>Нашивка "Синие шевроны"</li>
+                            <li>Фуражка с золотой кокардой</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Супервайзеры -->
+                <div class="uniform-card">
+                    <div class="uniform-image">
+                        <img src="lt1.png" alt="Супервайзеры">
+                    </div>
+                    <div class="uniform-content">
+                        <h3>Лейтенанты</h3>
+                        <ul class="uniform-details">
+                            <li>Белая форменная рубашка с нашивками звания</li>
+                            <li>Синие форменные брюки с лампасами</li>
+                            <li>Черный галстук</li>
+                            <li>Жетон старшего офицера</li>
+                            <li>Служебный пояс с оборудованием</li>
+                            <li>Парадные ботинки</li>
+                            <li>Фуражка с кокардой</li>
+                            <li>Нашивки звания на плечах</li>
+                        </ul>
+                    </div>
+                    </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="btn back-btn" onclick="history.back()">← Назад</div>
+                <a href="index.html" class="btn">На главную</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты департамента -->
+    <section id="contacts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакты департамента</h2>
+            </div>
+
+            <div class="contacts-section">
+                <h3 style="color: #003366; margin-bottom: 20px; text-align: center;">Контактная информация NYPD</h3>
+
+                <div class="contacts-grid">
+                    <div class="contact-item">
+                        <h4>📞 Телефоны</h4>
+                        <p><strong>Экстренный вызов:</strong> 911</p>
+                        <p><strong>Спец-связь:</strong> Conlex</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4>📧 Электронная почта</h4>
+                        <p><strong>Общие вопросы:</strong> FreeDrugs@gmail.com</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4>🏢 Адреса</h4>
+                        <p><strong>Главный офис:</strong> Brooklyn 29 sector</p>
+                        <p><strong>92 участок:</strong> 92 police department</p>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top: 30px;">
+                    <strong>Важно:</strong> Для экстренных случаев всегда используйте номер 911. Специальная связь Conlex предназначена для внутренних оперативных коммуникаций сотрудников NYPD.
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="btn back-btn" onclick="history

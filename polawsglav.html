@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мануал NYPD - Официальное руководство</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .hero-manual {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 85, 164, 0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-manual h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-manual p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .images-row {
+            padding: 50px 0;
+            background: #f8f9fa;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 5px solid #003366;
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            color: #666;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        .buttons-section {
+            padding: 60px 0;
+            background: #f0f5ff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        .manual-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .manual-btn {
+            background: linear-gradient(135deg, #003366, #0055a4);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 220px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .manual-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #0055a4, #003366);
+        }
+
+        footer {
+            background: #002244;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+            nav {
+                width: auto;
+                margin-top: 0;
+            }
+            nav ul {
+                justify-content: flex-end;
+            }
+            nav li {
+                margin-left: 20px;
+            }
+            .hero-manual h1 {
+                font-size: 3rem;
+            }
+            .hero-manual p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            .manual-btn {
+                padding: 14px 25px;
+                font-size: 1rem;
+                min-width: 200px;
+            }
+            .images-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .image-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-manual h1 {
+                font-size: 2rem;
+            }
+            .manual-buttons {
+                gap: 15px;
+            }
+            .manual-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="cop1.html">Главная</a></li>
+                        <li><a href="cop1.html#about">О нас</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                        <li><a href="cop1.html#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-manual">
+        <div class="container">
+            <h1>Официальный мануал NYPD</h1>
+            <p>Руководства, регламенты и правовая информация</p>
+        </div>
+    </section>
+
+    <section class="images-row">
+        <div class="container">
+            <div class="images-container">
+                <div class="image-card">
+                    <img src="glav.png" alt="Структура NYPD" class="main-image" onerror="this.src='https://via.placeholder.com/800x400?text=NYPD+Structure'">
+                    <p class="image-caption">Организационная структура Департамента полиции Нью-Йорка</p>
+                </div>
+                <div class="image-card">
+                    <img src="glav1.png" alt="Контакты прокуроров" class="main-image" onerror="this.src='https://via.placeholder.com/800x400?text=District+Attorneys'">
+                    <p class="image-caption">Окружные прокуроры Нью-Йорка</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="buttons-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Руководства и регламенты</h2>
+            </div>
+            <div class="manual-buttons">
+                <a href="polaws.html#laws" class="manual-btn">
+                    📚 Законы
+                </a>
+                <a href="polawsprav1.html" class="manual-btn">
+                    ⚖️ Правовые прецеденты
+                </a>
+                <a href="polawstrafic1.html" class="manual-btn">
+                    🚦 Дорожный кодекс
+                </a>
+                <a href="polawsmanual.html" class="manual-btn">
+                    📖 Мануал
+                </a>
+                <a href="polaws.html#uniforms" class="manual-btn">
+                    👕 Форма
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Полиция Нью-Йорка</h3>
+                    <p>Департамент полиции Нью-Йорка стремится защищать жизнь и имущество наших сограждан и предотвращать преступность и страх, обеспечивая безопасную и защищенную среду.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="cop1.html">Главная</a></li>
+                        <li><a href="cop1.html#about">О нас</a></li>
+                        <li><a href="cop1.html#services">Службы</a></li>
+                        <li><a href="cop1.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контактная информация</h3>
+                    <ul class="footer-links">
+                        <li>Brooklin 29 sector, 92 police deportament</li>
+                        <li>Телефон: 555-2424-22</li>
+                        <li>Email: FreeDrugs@gmail.com</li>
+                        <li>Экстренный вызов: 911</li>
+                        <li>Спец-связь: Conlex</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 20** Департамент полиции Нью-Йорка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

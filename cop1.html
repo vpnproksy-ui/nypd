@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полиция Нью-Йорка - Официальный сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .hero {
+            background: url('https://avatars.mds.yandex.net/i?id=fad866e4674652a7264c3bf77d0bd011_l-4571283-images-thumbs&n=13') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-align: center;
+            max-width: 250px;
+            margin: 20px auto 0;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .about-text {
+            flex: 1;
+            width: 100%;
+        }
+
+        .about-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .about-image {
+            flex: 1;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .services {
+            background: #f0f5ff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .full-width-card {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+        }
+
+        .service-img img {
+            width: auto;
+            height: auto;
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+        .service-im {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+        }
+        .service-im img {
+            width: auto;
+            height: auto;
+            max-width: 500px;
+            max-height: 500px;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+
+        .service-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-content h3 {
+            color: #003366;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            min-height: 2.8rem;
+        }
+
+        .service-content p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .stats {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #003366;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #003366;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        footer {
+            background: #002244;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            background: #003366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .service-btn:hover {
+            background: #0055a4;
+        }
+
+        .chat-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #003366, #0055a4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 2px solid #ffcc00;
+        }
+        .chat-float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        .chat-float-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            border: 1px solid #003366;
+        }
+        .chat-window.hidden {
+            display: none;
+        }
+        .chat-header {
+            background: linear-gradient(135deg, #003366, #0055a4);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        .chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .chat-header button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f5f5f5;
+        }
+        .message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            font-size: 0.9rem;
+        }
+        .user-message {
+            background: #003366;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .bot-message {
+            background: white;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .chat-input-area button {
+            background: #003366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0 20px;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .chat-input-area button:hover {
+            background: #0055a4;
+        }
+
+        @media (max-width: 480px) {
+            .chat-window {
+                width: 90vw;
+                right: 5vw;
+                bottom: 80px;
+            }
+            .chat-float-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                margin-left: 0;
+            }
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+            nav {
+                width: auto;
+                margin-top: 0;
+            }
+            nav ul {
+                justify-content: flex-end;
+            }
+            nav li {
+                margin-left: 20px;
+            }
+            .hero {
+                height: 600px;
+            }
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.3rem;
+            }
+            .hero-content {
+                text-align: left;
+                margin-left: 0;
+            }
+            .btn {
+                margin: 30px 0 0 0;
+            }
+            .about-content {
+                flex-direction: row;
+                text-align: left;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                width: 90%;
+                padding: 0;
+            }
+            .hero {
+                height: 700px;
+            }
+            .hero h2 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.5rem;
+            }
+            .hero-content {
+                max-width: 800px;
+                margin-left: 0;
+            }
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+            .stat-item h3 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 400px;
+            }
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section {
+                padding: 40px 0;
+            }
+            .service-img {
+                height: 180px;
+            }
+            .service-img img {
+                width: 160px;
+                height: 160px;
+            }
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Noir-guide</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Службы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Служим и защищаем Нью-Йорк</h2>
+                <p>Департамент полиции Нью-Йорка стремится улучшить качество жизни всех жителей города и его окрестностей, работая в партнерстве с сообществом для обеспечения правопорядка, сохранения мира и создания безопасной среды.</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О Департаменте</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Департамент полиции Нью-Йорка (<b>NYPD</b>)</h2>
+                    <p>Является крупнейшим и одним из старейших муниципальных полицейских департаментов в Соединенных Штатах. Основанный в 1845 году, <b>NYPD</b> имеет богатую историю служения и защиты жителей Нью-Йорка.</p>
+                    <p>На сегодняшний день в департаменте работает примерно 36 000 офицеров и 19 000 гражданских сотрудников, охватывая территорию в 468 квадратных миль и население около 8.5 Миллионов человек.</p>
+                    <p>Миссия <b>NYPD</b> - улучшить качество жизни в Нью-Йорке, работая в партнерстве с сообществом для обеспечения правопорядка, сохранения мира, создания безопасной среды и снижения уровня страха.</p>
+                    <p>Департамент организован в различные бюро и подразделения, включая Патрульную службу, Детективное бюро, Транспортное бюро, Жилищное бюро и многие специализированные подразделения, которые решают конкретные проблемы преступности и потребности сообщества.</p>
+                </div>
+                <div class="about-image">
+                    <img src="logo.jpg" alt="Офицеры полиции Нью-Йорка">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши службы</h2>
+            </div>
+            <div class="services-grid">
+                <a href="coppo.html" class="service-card">
+                    <div class="service-img">
+                        <img src="po.png" alt="Патрульная служба">
+                    </div>
+                    <div class="service-content">
+                        <h3>Патрульная служба</h3>
+                        <p>Основа NYPD, патрульные офицеры реагируют на экстренные вызовы, проводят регулярные патрулирования и взаимодействуют с сообществом для предотвращения преступности и поддержания общественного порядка.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <a href="copdt.html" class="service-card">
+                    <div class="service-img">
+                        <img src="dt.png" alt="Детективное бюро">
+                    </div>
+                    <div class="service-content">
+                        <h3>Детективное бюро</h3>
+                        <p>Детективы NYPD расследуют серьезные преступления, собирают доказательства, опрашивают свидетелей и работают над раскрытием дел от краж до убийств.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <a href="copaux.html" class="service-card">
+                    <div class="service-img">
+                        <img src="auxx.png" alt="Вспомогательная полиция">
+                    </div>
+                    <div class="service-content">
+                        <h3>Вспомогательная полиция (Auxiliary)</h3>
+                        <p>Волонтерское подразделение NYPD, состоящее из граждан, которые помогают регулярной полиции в патрулировании, наблюдении и общественных мероприятиях. Auxiliary офицеры работают в тесном сотрудничестве с сообществом, обеспечивая дополнительное присутствие и поддержку.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <a href="polawsglav.html" class="service-card full-width-card">
+                    <div class="service-im">
+                        <img src="path.png" alt="Мануал и правовая информация">
+                    </div>
+                    <div class="service-content">
+                        <h3>Общая информация, мануал и правовые основы</h3>
+                        <p>Полный сборник руководств, процедур, протоколов действий и оперативных стандартов для патрульной службы NYPD. Здесь представлены актуальные правовые нормы, внутренние регламенты, методические рекомендации и официальные документы, необходимые для эффективного несения службы. Доступ к мануалам, кодексам поведения и стратегическим инструкциям.</p>
+                        <div class="service-btn">Изучить мануал</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Полиция Нью-Йорка</h3>
+                    <p>Департамент полиции Нью-Йорка стремится защищать жизнь и имущество наших сограждан и предотвращать преступность и страх, обеспечивая безопасную и защищенную среду.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Службы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контактная информация</h3>
+                    <ul class="footer-links">
+                        <li>Brooklin 29 sector, 92 police deportament</li>
+                        <li>Телефон: 555-2424-22</li>
+                        <li>Email: FreeDrugs@gmail.com</li>
+                        <li>Экстренный вызов: 911</li>
+                        <li>Спец-связь: Conlex</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 20** Департамент полиции Нью-Йорка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Плавающая кнопка чата -->
+    <div class="chat-float-btn" id="chatFloatBtn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14h-3.2L12 19.2 7.2 16H4V4h16v12z"/>
+        </svg>
+    </div>
+
+    <!-- Окно чата -->
+    <div class="chat-window hidden" id="chatWindow">
+        <div class="chat-header">
+            <h4>Помощник NYPD</h4>
+            <button id="closeChatBtn">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Здравствуйте! Я офицер вспомогательной полиции Департамента полиции Нью-Йорка. Задайте мне любой вопрос о сайте, службах NYPD или правилах.
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Спросите что-нибудь..." autocomplete="off">
+            <button id="sendChatBtn">Отправить</button>
+        </div>
+    </div>
+
+    <script>
+    // ============================================
+    // НАСТРОЙКА AI-ПОМОЩНИКА (OpenRouter AI)
+    // ============================================
+    
+    // API-КЛЮЧ ОТ OPENROUTER (ваш ключ)
+    const API_KEY = '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';
+    
+    // --- БАЗА ЗНАНИЙ ---
+    let knowledgeBase = "";
+    
+    const manualKnowledge = `
+=== NYPD ===
+Основан в 1845 году. 36,000+ офицеров, 77 участков. Обслуживает 8.5 млн человек.
+
+=== ПАТРУЛЬНАЯ СЛУЖБА ===
+Оружие: Glock 17/19
+Транспорт: Ford Crown Victoria (Перехватчик)
+Снаряжение: бронежилет, рация (PD1, PD2, PD3), тайзер, дубинка, наручники, аптечка
+Функции ПК: просмотр сотрудников, лицензии, пробив по номерам, штрафы, ордера
+
+=== ВСПОМОГАТЕЛЬНАЯ ПОЛИЦИЯ (Auxiliary) ===
+Волонтёры, помогают патрульной службе. НЕТ огнестрельного оружия.
+Снаряжение: дубинка, тайзер
+Форма: тёмно-синяя рубашка, чёрный галстук, синие тактические брюки
+Нашивка "AUXILIARY POLICE", значок на груди
+Транспорт: 90 Chevrolet (только супервайзерам)
+
+=== ШТРАФЫ ===
+Телефон за рулём: $50
+Красный свет: $50
+Непропуск пешехода: $50
+Превышение скорости: $90
+Опасное вождение: $250
+Парковка под запрещающим знаком: $200 + эвакуация
+Остановка на "Вафле": $200 + эвакуация
+
+=== ПРАВОВЫЕ ПРЕЦЕДЕНТЫ ===
+Правило Миранды: перед допросом подозреваемого нужно уведомить о правах
+Терри-стоп: кратковременное задержание при обоснованном подозрении
+
+=== КОНТАКТЫ ===
+92 участок, Бруклин, 29 сектор
+Экстренный вызов: 911
+Спец-связь: Conlex
+Контакты 92-го участка
+Заместитель инспектора ARTHUR BEYLOCK — командир 92-го участка. Его телефон: 582-2687.
+
+Лейтенант MARCUS TANNER — заместитель командира по вспомогательной полиции.
+
+Контакты прокуроров
+MATT CONNOLLY — окружной прокурор всего Нью-Йорка.
+
+JUSTIN VERITY — районный прокурор Бруклина.
+
+MADS KEEPER — районный прокурор Квинс.
+Уголовный Кодекс NYPD
+Незначительные правонарушения
+Примечание: За действия из этого списка полагается устное предупреждение или штраф (до 50$) при его игнорировании. Пока эти действия не угрожают жизни и здоровью человека - запрещается вести активную погоню за нарушителем; деяния нужно припомнить при более серьёзном нарушении с соответствующим завышением наказания.
+Нарушение ПДД Штраф до $50
+Словесное домогательство, издевательство, оскорбление Штраф до $50
+Намеренная дезинформация; ложные вызовы экстренных служб Штраф до $50
+Проникновение на чужую/запретную территорию Штраф до $50
+Нарушение общественного порядка Штраф до $50
+Ношение тяжёлого оружия в общественном месте Штраф до $50
+Владение оружием с автоматическим видом стрельбы* Штраф до $50
+* Владение автоматическим оружием разрешается только гражданам с особой лицензией на производство оружия, либо специальным подразделениям правоохранительных органов.
+Преступления лёгкого характера
+За действия из этого списка полагается штраф до 200$. При систематических нарушениях (больше трёх включительно), или если эти действия привели к трагическим последствиям, мера наказания сменяется тюремным заключением.
+Помеха исполнению закона Штраф до $200
+Мелкое воровство Штраф до $200
+Вандализм; хулиганство Штраф до $200
+Драка в общественном месте Штраф до $200
+Шантаж Штраф до $200
+Неуплата штрафа Штраф до $200
+Отсутствие необходимых лицензий Штраф до $200
+Преступления средней тяжести
+При преступлениях средней тяжести применяется наказание в виде штрафа до 500$ или соответствующего тюремного срока.
+Побег с места преступления Штраф до $500
+Угрозы жизни, имуществу, причинение вреда чужому имуществу Штраф до $500
+Нападение или причинение вреда здоровью Штраф до $500
+Похищение Штраф до $500
+Взяточничество Штраф до $500
+Превышение полномочий на позиции гос. служащего Штраф до $500
+Хранение или производство запрещенных предметов (до 1кг) Штраф до $500
+Угон автомобиля Штраф до $500
+Воровство в крупном размере (от 200$) Штраф до $500
+Хулиганство (Мародерство) Штраф до $500
+Невыполнение обязательств по пожарной безопасности* Штраф до $500
+Нарушение условий контракта, нарушение соглашения о неразглашении Штраф до $500
+Использование оружия с приспособлениями, снижающими громкость стрельбы Штраф до $500
+* Закон касается общественных мест. Проверку заведений имеет право проводить только инспектор пожарного департамента.
+Тяжкие преступления
+За совершение тяжкого преступления следует наказание в виде штрафа до 800$ вместе с соответствующим тюремным сроком.
+Грабеж Штраф до $800
+Вымогательство; рэкет Штраф до $800
+Нанесение увечий; членовредительство; изнасилование Штраф до $800
+Доведение до суицида Штраф до $800
+Непреднамеренное убийство Штраф до $800
+Поджоги Штраф до $800
+Коррупция в крупных размерах Штраф до $800
+Хранение или производство запрещенных предметов (от 1кг) Штраф до $800
+Участие в запрещенных или преступных организациях Штраф до $800
+Участие в массовых беспорядках Штраф до $800
+Продажа оружия нелицензированному покупателю* Штраф до $800
+Незаконная передача оружия, практическая эксплуатация чужого оружия Штраф до $800
+* Сама покупка не является противозаконным действием. Оружие, являющееся законным, изымается до устранения причин задержания.
+Особо тяжкие преступления
+Доказанная вина в совершении особо тяжкого преступления влечёт за собой штраф до 1500$, соответствующий тюремный срок и не обжалуется судом.
+Умышленное убийство, массовое убийство Штраф до $1500
+Организация преступных формирований Штраф до $1500
+Организация массовых беспорядков Штраф до $1500
+Отравление; пытки; терроризм Штраф до $1500
+Попытка государственного переворота Штраф до $1500
+Преступление против человечества Штраф до $1500
+Незаконный оборот оружия, манипуляции с серийным номером оружия Штраф до $1500
+Общее примечание: Соучастие в преступлении приравнивается к совершению этого преступления.
+← Назад На главную
+Униформа подразделений
+Вспомогательная полиция
+Кандидат на вступление в полицию
+Синяя рубашка с нашивками NYPD
+Черный галстук
+Темно-синие брюки
+Нашивка "AUXILIARY POLICE"
+Черные матовые туфли
+Значок на груди - отсутствует
+Отсутствие головного убора
+Патрульное бюро
+Вспомогательная полиция
+Темно-синяя форменная рубашка
+Черный галстук
+Синие тактические брюки(Тактический пояс)
+Служебный пояс с оборудованием
+Патрульные ботинки
+Звездообразный жетон на груди
+Нашивка "AUXILIARY POLICE"
+Фуражка с серебрянной кокардой
+Патрульное бюро
+Патрульное бюро
+Темно-синяя форменная рубашка
+Черный галстук
+Синие тактические брюки
+Тактический пояс с оборудованием
+Патрульные ботинки
+Серебрянный значок на груди
+Нашивка "NYPD"
+Фуражка с серебрянной кокардой
+Детективы
+Детективы
+Гражданская одежда (костюм, casual)
+Скрытое ношение оружия
+Жетон на цепочке или в кобуре
+Наручники в кобуре
+Рация скрытого ношения
+Тактический жилет под одеждой (по необходимости)
+Сержанты
+Сержанты
+Темно-синяя форменная рубашка
+Черный галстук
+Синие тактические брюки
+Тактический пояс с оборудованием
+Патрульные ботинки
+Золотой значок на груди
+Нашивка "NYPD"
+Нашивка "Синие шевроны"
+Фуражка с золотой кокардой
+Супервайзеры
+Лейтенанты
+Белая форменная рубашка с нашивками звания
+Синие форменные брюки с лампасами
+Черный галстук
+Жетон старшего офицера
+Служебный пояс с оборудованием
+Парадные ботинки
+Фуражка с кокардой
+Нашивки звания на плечах
+● Перед допросом полицией, подозреваемый обязан быть проинформирован о своих Конституционных правах. Отказ от прав должен закрепляться в письменной форме после информирования.
+Данная практика также известна как «Правило Миранды»
+Эрнесто Миранда, истец
+Против
+Штат Аризона, ответчик
+Дело №759
+Вашингтон, окр. К.
+Понедельник, Февраль 28, 1966
+Во время устных аргументов присутствовали: Эйб Фортас, младший член суда; действующий судья; Джон Флинн, адвокат истца; частная практика; Гэри Нельсон, адвокат ответчика; помощник окружного прокурора Финикс, Аризона; Телфорд Тэйлор, особый советчик штата Нью-Йорк; генерал США в отставке.
+
+Часть протокола аргумента Джона Флинна, в интересах истца
+МР. СПРАВЕДЛИВОСТЬ ФОРТАС: Мр. Флинн, прошу прощения за перебивание: вы сказали, Миранде не сообщали что он может хранить молчание? Вы именно это сказали?
+
+МР. ФЛИНН: Верно, Ваша Честь.
+
+МР. СПРАВЕДЛИВОСТЬ ФОРТАС: Есть ли по этому поводу разногласия?
+
+МР. ФЛИНН: Да, есть, Ваша Честь, и я считаю они появились в результате приложения к осуждению за грабёж. В этом отношении, я хотел бы ответить на вопрос Вашей Чести путём ссылки на страницу 52 доводов истца, к приложению вверху, где задавал вопросы Мр. Мур, юрист суда...
+
+[Полная транскрипция дела Миранды доступна в архиве Верховного суда]
+
+Значение прецедента: «Правило Миранды» стало обязательным для всех полицейских департаментов США, включая NYPD. Подозреваемый должен быть предупреждён о праве хранить молчание и праве на адвоката перед любым допросом.
+Дело Терри против Огайо (1968)
+Джон Терри, истец
+Против
+Штат Огайо, ответчик
+Дело №67
+Вашингтон, окр. К.
+Вторник, Декабрь 12, 1967
+Во время устных аргументов присутствовали: Эрл Воррен, верховный судья; Виллиам Бреннанн, младший член суда; Тургуд Маршалл, младший член суда; Хьюго Блэк, младший член суда; Луис Стоукс, адвокат истца; частная практика; Рубен Пэйн, адвокат ответчика; помощник окружного прокурора Кайахога, Огайо.
+
+Часть протокола аргумента Луиса Стоукса, в интересах истца
+МР. СТОУКС: Офицер полиции дал показания с ответами на вопросы о достаточных основаниях его решения. Мы спросили: 'Знаете ли вы кого-то из этих мужчин?' Ответ: 'Нет.' Вопрос: 'Видели ли вы кого-то из этих мужчин ранее?' Ответ: 'Нет.' Вопрос: 'Давал ли вам кто-либо информацию про этих мужчин?' Ответ: 'Нет.' Далее его спросили, что привлекло его внимание к ним. Он сказал: 'Ну, откровенно говоря, они мне не понравились. И меня привлекли их действия на Четырнадцатой Улице.'
+
+МР. СПРАВЕДЛИВОСТЬ БЛЭК: Что-что он сказал? 'Мне не понравились'?
+
+[Полная транскрипция дела Терри доступна в архиве Верховного суда]
+
+Значение прецедента: Легализовал «Терри-стоп» — процедуру остановки и поверхностного обыска при наличии разумного подозрения, что лицо вооружено и опасно.
+
+Мартин Летх, истец
+Против
+Рапидо Гонзалес, ответчик
+Дело №69
+Калифорния
+Среда, Апрель 22, 1981
+Во время устных аргументов присутствовали: Стивен Кий, младший член суда; действующий судья; Джесси Каунтер, адвокат истца; частная практика; Джерри Шарп, адвокат ответчика; государственная практика.
+
+Часть протокола допроса Мартина Летха, ведёт Джерри Шарп
+МР. ШАРП: Мр. Летх, вы предъявили суду, что Мр. Гонзалес - ваш друг. Верно?
+
+МР. ЛЕТХ: Был. Больше нет.
+
+МР. ШАРП: Скажите, почему вы подали в суд на человека, кого вы считали другом?
+
+МР. ЛЕТХ: Он убил мою жену. Это он сделал.
+
+МР. ШАРП: Мр. Летх, вы знаете, почему Мр. Гонзалес убил вашу жену?
+
+МР. ЛЕТХ: Он воспользовался моим револьвером.
+
+МР. ШАРП: Как Мр. Гонзалес получил доступ к вашему оружию?
+
+МР. ЛЕТХ: Я.. Кхм, я дал ему подержать-
+
+СУДЬЯ КИЙ: Вы предоставили оружие подсудимому?
+
+МР. ЛЕТХ: Да, судья.
+
+СУДЬЯ КИЙ: Ради Бога, зачем вы это сделали?
+
+МР. ЛЕТХ: Откуда я мог знать, что он выстрелит?
+
+[Полная транскрипция дела Летх против Гонзалеса доступна в архиве суда Калифорнии]
+
+Значение прецедента: Установлена ответственность владельца оружия за его передачу третьим лицам. Только законный владелец имеет право на использование оружия.
+Дело Броу против Майкла (1991)
+Джон Броу, истец
+Против
+Джон Майкл, ответчик
+Дело №3
+Кентукки
+Вторник, Январь 15, 1991
+Во время устных аргументов присутствовали: Грегори Кейси, верховный судья; Финн Спенсер, младший член суда; Вильям Деск, адвокат истца; частная практика; Джордж Квинн, адвокат ответчика; государственная практика; Конрад Максвелл, офицер полиции города Трентон; округ Тодд, Кентукки.
+
+Часть протокола аргумента Конрада Максвелла, в интересах штата Кентукки
+ВЕРХОВНЫЙ СУДЬЯ КЕЙСИ: Мр. Максвелл, это дело не похоже ни на одно другое. Пожалуйста, объясните суду - и жюри - ради чего вы забили на все неписанные правила проведения судебного заседания?
+
+МР. МАКСВЕЛЛ: Ваша Честь, знакомы ли вы с 'игрой в +1'?
+
+ВЕРХОВНЫЙ СУДЬЯ КЕЙСИ: Нет. Это как-то связано с НСС, как вы упомянули раньше?
+
+МР. МАКСВЕЛЛ: Да. Кто-то мог добавить +1 или -1 к своему номеру социального страхования. С виду безобидное действие превращается в страшный сон для другого человека, когда кто-то точно так же подменяет номер социального страхования на одну цифру.
+
+МР. ДЕСК: Ваша Честь, в Штатах нет никакого единого формата документа идентификации личности. Единственная значимая переменная, способная определить личность человека - номер социального страхования. И в этом проблема - человек, знающий чужой НСС, может украсть чужую личность.
+
+[Полная транскрипция дела Броу против Майкла доступна в архиве суда Кентукки]
+
+Значение прецедента: Установлена необходимость создания единого формата документа идентификации личности для предотвращения кражи личности и обеспечения прозрачности исполнения закона.
+Дело Штат Нью-Йорк против Лексингтона (2000)
+Штат Нью-Йорк, истец
+Против
+Редмонд Лексингтон, ответчик
+Дело №1
+Нью-Йорк
+Суббота, Январь 1, 2000
+Во время устных аргументов присутствовали: Пол Грант, младший член суда; Джастин Верити, адвокат истца; помощник окружного прокурора Нью-Йорк, Нью-Йорк; Мартин Джеральд, адвокат ответчика; частная практика.
+
+Часть протокола аргумента Джастина Верити, в интересах штата Нью-Йорк
+СУДЬЯ ГРАНТ: Мр. Верити, вы сейчас оспариваете результаты прошедшего дела, или что вы пытаетесь сделать?
+
+МР. ВЕРИТИ: Я пытаюсь доказать необходимость закрытых заседаний, сэр. Необходимость судить людей по их заслугам, а не нарушенными ими же правами.
+
+СУДЬЯ ГРАНТ: Дайте угадаю - кто-то тоже признал его невиновным из сентиментальных связей?
+
+МР. ВЕРИТИ: Можно и так сказать, Ваша Честь. Отбор жюри шёл необычайно долго из-за потока людей со спорным жизненным опытом. Многие пытались скрыть связь с подсудимым.
+
+МР. ВЕРИТИ: Всего этого бы не случилось, если бы дела разбирал верховный суд, а не через присяжных. Наличие лишних людей в процессе сильно мешает его успешному завершению.
+
+[Полная транскрипция дела Штат Нью-Йорк против Лексингтона доступна в архиве суда Нью-Йорка]
+
+Значение прецедента: Суды крупных городов имеют право временно приостановить проведение судов присяжных при доказательстве наличия уровня преступности, способного нарушить справедливость судебного процесса.
+● Гражданский арест в густо-населённых территориях и крупных городах приравнивается к взятию заложника. Гражданское лицо имеет право содействовать полицейскому, если тому чётко требуется поддержка — и он сам запросил её у гражданина, в виду отсутствия иных способов поддержать порядок.
+Все сведения, полученные адвокатом от своего клиента во время их сотрудничества, защищены адвокатской тайной. Право на распространение какой-либо части информации остаётся за клиентом. Привилегия на неразглашение не действует на информацию, получение полицией которой может пресечь планируемое клиентом особо тяжкое преступление.
+Основные правила дорожного движения
+speed limitОграничения скорости
+35 миль/ч
+Стандартное ограничение скорости на улицах Нью-Йорка. На автомагистралях(Большой тонель) — 50-65 миль/ч в зависимости от участка.
+
+finesШтрафы за распространённые нарушения
+no parking
+Запрещено останавливаться:
+На пешеходных переходах, в 15 футах от гидранта, на полосах общественного транспорта
+Штраф $200
+no parking
+Остановка на "Вафле":
+Остановка/парковка на перекрестках, специальных зон "Вафля" запрещена
+Штраф $200 + эвакуация
+disabled
+Парковка под запрещающим знаком:
+Cтрожайше запрещена
+Штраф $200 + эвакуация
+phoneИспользование телефона за рулём
+Штраф $50
+red lightПроезд на красный свет
+Штраф $50
+pedestrianНепропуск пешехода на переходе
+Штраф $50
+speedПревышение скорости
+Штраф $90
+dangerСоздание опасной ситуации, опасное/неадекватное вождение
+Штраф $200
+dangerНарушение ПДД повлекшее нанесение увечий/смерть пострадавшего приравнивается к последнему и наказание выдается соответсвующее
+finesДополнительная информация с сайта "Overloaded"
+no parkingПарковать машины МОЖНО прямо на дороге возле тротуара, пока обратное не скажет отдельный знак! НАОБОРОТ в том числе!
+no parkingВнешние парковки больших учреждений зарезервированы сотрудниками!
+disabledПеред знаком "СТОП" надо останавливаться на 3 секунды МИНИМУМ, даже когда рядом нет машин!
+disabledНа клетчатой разметке (вафля) останавливаться и парковаться НЕЛЬЗЯ! Аварийка - НЕ исключение!
+disabledОбычно, на городских дорогах лимит - 35 миль/ч!
+disabledНочью НУЖНО включать фары ТОЛЬКО ближнего света! Дальний включаем вне города!
+alcoholАлкоголь и наркотики
+warningНулевая терпимость
+Штраф за первое нарушение: $200 + возможный арест.
+
+documentsПорядок проведения "Трафик стопа"
+licenseВключить сигнальные огни, сирены.
+registrationВключить громкоговоритель и уведомить об остоновке транспотного средства (Марка автомобиля, гос номер, цвет).
+insuranceКак только произвели остоновку подходите к автомобилю со стороны водителя, докасаясь до богажника или бампера.
+fineСообщайте причину остоновки и требуйте документы.
+fineПроизводите проверку документов через бортовой компьютер или через колег в участке.
+documentsДокументы, обязательные при себе
+licenseВодительское удостоверение (действительное)
+registrationДокументы на транспортное средство
+fineОтсутствие любого из документов
+Штраф $50
+Основные принципы работы
+При рядовой работе вы должны руководствоваться следующими принципами, вне зависимости от звания или должности:
+
+🔍 Субординация и руководство
+Все нерядовые ситуации направляются к супервайзерам. Это же касается и главенства на длительных ситуациях. Не знаете, как поступить - запрашивайте помощь начальства. За отсутствием таковых - направляйте ситуацию старшим офицерам на смене.
+
+🧠 Объективность и самообладание
+Смотрите на ситуации объективно: неумение держать себя в руках и здраво оценивать окружающую обстановку - неприемлемое свойство для госслужащего. Горячий пыл может привести к критичным последствиям. Иногда к жертвам.
+
+🤝 Уважение и человечность
+Относитесь к своим коллегам с уважением. Соблюдайте субординацию как в отношении гражданских, так и старших по званию. Не используйте армейский вид обращений: 'Так точно', 'Никак нет' - подобное в полиции не практикуется. Вы - человек, а не робот.
+
+Помните о понятии 'Чтобы поймать преступника - нужно думать как преступник'. Люди совершают преступления своим человеческим фактором. Точно такая же человечность поможет их решить, наладить контакт со свидетелями и подозреваемыми.
+💪 Уверенность и бдительность
+Действуйте уверенно: не давайте сторонним раздражителям выбить себя из колеи. Помните, что от вашей работы прямо зависит безопасность окружающих. Растеряетесь или потеряете бдительность - криминал неприменно этим воспользуется.
+
+⚖️ Применение силы и допросы
+Физическую силу запрещается применять к тем, кто не оказывает сопротивления при задержании. Возможные допросы обязаны проходить в один присест, без выключения камер и причинению травм к подозреваемому. Срок обвиняемого обязан быть уменьшен, если тот приходит сдаваться и/или работает со следствием.
+
+Снаряжение патрульного
+Перед началом работы, нужно научиться пользоваться своим снаряжением. Теория поможет справиться со всеми задачами, встречаемыми во время вашей работы.
+
+🔫
+Glock 17
+Калибр 9x19. Основное огнестрельное оружие. Его вы берёте с собой на службу всегда, когда можете.
+
+🦯
+Дубинка
+Вспомогательный инструмент для навязывания послушания.
+
+⚡
+Тайзер
+Электрошоковое оружие малолетального действия. Это ваше главное средство против нарушителей общественного порядка.
+
+🔗
+Наручники
+Используются при задержании подозреваемых. Надеваются на человека при задержании.
+
+🩺
+Аптечка ПМП
+Для оказания первой медицинской помощи. Используется для оказания ПМП.
+
+🚪
+Таран
+С его помощью выбиваются двери и замочные механизмы автомобилей.
+
+⚠️ Важные примечания по снаряжению:
+Тяжёлое оружие нельзя брать в патруль без соответствующего экзамена
+Патроны выдаются арсеналом раз в некоторое время
+Бронежилет надевается только во время экстренных ситуаций
+Наручники - перед тем как задерживать, убедитесь, что у вас есть реальный на то повод. Начальство не защитит вас при несущественных причинах.
+👕 Форма и экипировка:
+Бронежилет: Обеспечивает защиту, но тяжёлый. Не носите его всю службу.
+Куртка: Верхний слой одежды, рекомендуется в холодное время года.
+Рубашка: Лейтенанты и выше носят белую, обычные офицеры - тёмно-синюю.
+Одежда закупается вами под ваши личные характеристики.
+Полицейским выдаются: Фуражка, личный жетон, значок, петлицы, плечевой микрофон.
+Первая медицинская помощь (ПМП)
+🩺 Основные принципы
+Ваша стандартная аптечка поможет максимум стабилизировать пару человек. Всегда сначала помогайте коллегам, чтобы уже они помогли вам.
+
+При оказании первой медицинской помощи, в первую очередь уделите время осмотру пострадавшего. Дальше, действуйте по ситуации:
+
+🩸
+Внешнее кровотечение
+Требует наложения бинтов. Одного достаточно.
+
+🥶
+Обморожение
+Справляется Адреналином.
+
+💊
+Наркотические воздействия
+Необходим расспрос свидетелей - нужно точно знать с чем бороться.
+
+💉 Действия при наркотических отравлениях:
+От опиоидов: спасает Налоксон
+От кокаиновых субстанций: помогает Адреналин
+Отравление амфетаминами: смертельно
+Спросите, какие вещества принимал пострадавший. Как только стабилизируется состояние пострадавшего - приступайте к СЛР.
+
+📞 Важно:
+Держите контакт с парамедиками, вызывайте их даже если справляетесь с пострадавшим самим.
+
+Рация и связь
+📻 Использование рации
+Используется для связи сотрудников друг с другом. Рация имеет по 3 канала на каждую структуру. Используя рацию, передавайте информацию быстро и чётко: Позывной - Местоположение - Происшествие - от этого зависит успешность операции.
+
+Каналы полиции (PD)
+PD1
+Основной канал, используется офицерами во время патрулирования
+PD2
+Запасной канал, для более удобной коммуникации в долгих ситуациях
+PD3
+Канал для связи со старшим составом участка
+Специальные каналы
+COM
+Канал для объявлений, важных оповещений. Доступ только у Супервайзера
+FD1
+Канал для связи с пожарными
+🔫 Тяжёлое оружие и патроны:
+Тяжёлое оружие нельзя брать в патруль. Используется в экстренных ситуациях: штурм, предотвращение серьезного преступления. Травматический дробовик относится к 5-й стадии применения силы.
+Тяжёлое оружие не доступно сотрудникам, не прошедшим соответствующий экзамен.
+Патроны - арсенал выдаёт 3 снаряженных магазина или коробку картечи для дробовика исключительно вам, под обязательство не передавать их никому.
+Патрулирование и организация
+🚓 Организация патруля
+Перед выходом в патруль, вам нужно подойти к супервайзеру. Он назначит вам напарника, если имеется свободный офицер. Когда супервайзера нет - вам стоит найти напарника самостоятельно, при помощи рации. Выходить в патруль в одиночку не рекомендуется.
+
+🔍 Проверка перед выходом в патруль:
+Проверить оружие и запасные магазины
+Убедиться в наличии аптечки и тайзера
+Распределить вторичное снаряжение между членами экипажа
+Обеспечить себя продовольствием
+Рекомендуется иметь минимум аптечку и тайзер на один патрульный экипаж
+🚗 Служебный транспорт
+Служебным транспортом офицера является Ford Crown Victoria. Ваш патрульный транспорт - такой же инструмент, как остальное снаряжение.
+
+Не брезгуйте использовать патрульную машину как укрытие
+Перевозите улики в багажнике, а не у себя в куртке
+Все запросы по транспорту производятся в терминале на нижней парковке участка
+Опытные офицеры имеют привычку покупать в автомобиле огнетушитель, коробки и медицинские повязки
+🚨 Правила погони:
+Активные погони разрешены только на специализированных участках дороги: тоннели, автомагистрали и другие малонаселённые городские зоны
+Предпочтите дорожные перекрытия PIT и RAM маневрам
+Незначительные правонарушения не должны сопровождаться погонями
+Всегда контролируйте скорость автомобиля
+Оставляйте патрульный автомобиль на нижней парковке участка
+Не оставляйте свой транспорт без присмотра надолго
+🚧 Организация оцепления
+Оцепление - перекрытие территории. При оцеплении приоритетом является обеспечение безопасности своим коллегам и возможным близстоящим гражданам.
+
+📋 Процедура оцепления:
+Рассредоточить офицеров по опасным участкам
+Использовать автомобили для закрытия территории
+Отогнать зевак от линии оцепления
+Просить помощи у пожарного департамента при необходимости
+Задерживать нарушителей линии оцепления
+В багажниках патрульных юнитов лежат конусы с лентами
+🚨 Эвакуация:
+Иногда возникают ситуации, когда оцепить территорию физически не получится из-за крайне явной опасности. В такие моменты, на подготовку нет времени.
+
+Именно вам придётся выводить гражданских из затронутых зданий
+Если граждане не собираются вас слушать - используйте тайзер с наручниками
+Действуйте по пути наименьшего сопротивления для достижения результата в кратчайшие сроки
+Арест и задержание
+⚖️ Процессуальный кодекс
+Арест - это мера наказания в виде задержания и дальнейшего ограничения свободы. Задерживают гражданина для выяснения обстоятельств, а арест уже назначается судом. Оформление ареста происходит в приёмной участка.
+
+📜 Правило Миранды:
+"Вы имеете право хранить молчание. Всё, что вы скажете - может и будет использовано против вас в суде. Вы имеете право на один телефонный звонок. Вы имеете право на присутствие адвоката во время допроса. Если вы не можете оплатить услуги адвоката, то он будет предоставлен вам государством. Ваши права вам поняты?"
+
+📋 Порядок задержания гражданина:
+Надеть наручники на подозреваемого
+Произвести первичный обыск. Изъять оружие при нахождении такового
+Зачитать подозреваемому его Конституционные права (Правило Миранды)
+Посадить подозреваемого в наручниках в служебное авто, доставить в полицейский участок
+По прибытии произвести вторичный обыск. Изъять оставшиеся запрещённые предметы
+Произвести допрос подозреваемого в присутствии адвоката, если его требует задержанный
+При подтверждении виновности, произвести арест и поместить подозреваемого в тюремную камеру
+⚠️ Важные примечания:
+Вы обязаны уведомить задерживаемого о том, что он задержан - и в подозрении на что
+При угрозе жизни любому из субъектов задержания, обыск и права можно провести после стабилизации ситуации
+Вы не имеете права удерживать человека в допросной против его воли более десяти минут без адвоката
+Не задерживайте на большое количество времени подозреваемого, если вы не особо уверены в обвинениях
+Вы не имеете права отказывать гражданину в реализации его прав
+Вы не обязаны вытягивать желание пользоваться своими правами из подозреваемых
+Применение силы
+1
+Присутствие
+Иногда, достаточно одного только присутствия офицера, дабы де-эскалировать ситуацию. По прибытии на сцену спросите у окружающих, всё ли хорошо. Наблюдайте, давайте своим присутствием на неуверенных в себе нарушителей. Ни в коем случае не говорите "Кто вызывал полицию?" - это настроит против вас обычных прохожих.
+
+2
+Приказ
+На этой стадии происходят аресты первого типа - с содействием подозреваемого и без излишней физической силы. Покажите, что вы авторитет и вас нужно слушать. Говорите чётко, без бунтарности и сленга.
+
+3
+Сила без спецсредств
+На этой стадии происходит арест второго типа - когда ваша цель легко вооружена, не слушается или даёт вам отпор. Не забудьте обыскать задержанного - вдруг, это наркотики являются причиной резкого поведения подозреваемого.
+
+4
+Малолетальные спецсредства
+Когда ваши слова совсем игнорируют, из ваших рук вырываются, и человеческих сил не хватает - пора использовать табельные средства. Резиновая дубинка, перцовый баллончик, тайзер - не важно, что вы решитесь использовать. Важно предупредить об использовании. Желательно несколько раз.
+
+5
+Летальные спецсредства
+Аресты третьего типа производятся только при ощутимой опасности жизням окружающих и/или офицеров. Когда появляется шанс оказаться застреленным - пора доставать пистолет. Когда появляется прямая опасность оказаться застреленным - пора наводить пистолет на опасность. И только когда кто-то наводит оружие на вас или собирается ранить другого - пора стрелять.
+
+🔫 Принципы обращения с оружием:
+Всегда обращайтесь с оружием, как с заряженным
+Не направляйте оружие туда, куда не собираетесь стрелять
+Ставьте палец на спусковой крючок только когда собираетесь стрелять
+Знайте свою цель и что находится за ней
+🚫 Запрещено:
+Стрельба по автомобилям категорически запрещена
+Не применяйте оружие тогда, когда этого можно избежать
+Применение оружия должно ограничиваться ситуациями, в которых офицеру или гражданским грозит прямая опасность
+Категорически запрещается размахивать оружием просто так
+Никаких предупредительных выстрелов
+Травматический дробовик тоже способен убить - управляйте им с осторожностью
+🎯 Рекомендации при задержаниях:
+Держите контакт со своими напарниками
+Запрашивайте подкрепление, когда ситуация собирается выйти из-под вашего контроля
+Всегда держите руку на кобуре при разговоре с подозреваемым
+Занимайте укрытия при опасности
+Поворачивайте ситуации в свою сторону
+Не запускайте преступников себе за спину
+Следите за перекрёстным огнем
+Структура департамента
+🏢 Бюро NYPD
+🚓 Бюро патрульной службы
+Самое многочисленное и основное бюро структуры. Занимается пешим и автомобильным патрулированием, поддержанием порядка в городе и за его пределами.
+
+👥 Вспомогательная полиция
+Волонтерское подразделение патрульного бюро. Помогает основному патрульному бюро, заменяет важных сотрудников своей массовостью.
+
+🕵️ Детективное бюро
+Бюро, ведущее следственную деятельность. В их обязанности входит предотвращение, обнаружение и расследование преступлений.
+
+Примечание: Офицеры патрульного бюро равны по званию с детективами и не сравнимы по должностям. Это сотрудники разных бюро под разным шефством, работающие сообща.
+
+⭐ Иерархия званий
+👮 Офицер Вспомогательной Полиции
+Сотрудник, оказывающий помощь Департаменту в участке и за его пределами. Занимается оцеплениями во время проведения особых мероприятий, снабжением заключенных продовольствием и обеспечением безопасности окружающих.
+
+👮‍♂️ Офицер/Детектив
+Сотрудник, занимающийся базовыми патрульными/следственными обязанностями. В некоторых случаях, офицеры-наставники занимаются обучением младших сотрудников.
+
+⭐ Сержант
+Офицер, успешно проявляющий инициативу в экстренных ситуациях. Занимается координацией личного состава, проводит брифинги и командует отрядами при штурме преступных формирований.
+
+🌟🌟 Лейтенант
+Погружается в бумажную работу с головой. Занимается узкоспециализированной деятельностью - связи с общественностью, внутренние дела участка или отдел кадров. Часто заменяет капитана.
+
+🌟🌟🌟 Капитан
+Начальник участка. Занимается принятием и распределением бюджета, выдачей премий, проведением особых мероприятий, принятием программ обучения.
+
+🎓 Программа обучения FTP
+FTP (Field Training Program) - программа обучения младших офицеров, созданная для повышения и последующей проверки квалификации. Программу обучения обязан пройти каждый офицер, чтобы стать компетентным сотрудником.
+
+FTO (Field Training Officer) - офицер-наставник, доказавший способность обучать младших сотрудников. Его задача - передать практические умения с опытом сотруднику, имеющему базовые знания о работе полиции.
+
+Маркировки патрулей и позывные
+🔤 Система позывных NYPD
+Позывные NYPD работают по схеме 'Номер участка - Патрульный юнит'. Вместо номеров для юнитов используются буквы фонетического алфавита NYPD, по порядку.
+
+🎯 Особые маркировки:
+92-Squad (Сквад): Назначается детективам
+92-Sergeant/Lieutenant/Captain: Для вызова старших по званию
+🔡 Фонетический алфавит NYPD
+A
+Adam (Адам)
+B
+Boy (Бой)
+C
+Charles (Чарльз)
+D
+David (Дэвид)
+E
+Eddie (Эдди)
+F
+Frank (Фрэнк)
+G
+George (Джордж)
+H
+Henry (Генри)
+I
+Ida (Ида)
+J
+John (Джон)
+K
+King (Кинг)
+L
+Larry (Ларри)
+M
+Mike (Майк)
+N
+Nora (Нора)
+O
+Oscar (Оскар)
+P
+Peter (Питер)
+Q
+Queen (Квин)
+R
+Robert (Роберт)
+S
+Sam (Сэм)
+T
+Thomas (Томас)
+U
+Union (Юнион)
+V
+Victor (Виктор)
+W
+William (Вильям)
+X
+X-ray (Экс-рэй)
+Y
+Yellow (Еллоу)
+`;
+
+    async function loadKnowledgeFromPages() {
+        let combined = manualKnowledge;
+        knowledgeBase = combined;
+        console.log(`База знаний загружена (${knowledgeBase.length} символов)`);
+    }
+    
+    loadKnowledgeFromPages();
+    
+    // --- ФУНКЦИЯ ОТПРАВКИ ЗАПРОСА К OPENROUTER AI ---
+    async function sendToAI(question) {
+        try {
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'NYPD Assistant'
+                },
+                body: JSON.stringify({
+                    model: 'deepseek/deepseek-chat',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: `Ты — офицер Вспомогательной полиции Нью-Йорка (Auxiliary Police Officer).
+
+## Твоя роль
+- Ты носишь тёмно-синюю форму с нашивкой "AUXILIARY POLICE"
+- У тебя есть дубинка, тайзер, рация, но НЕТ огнестрельного оружия
+- Ты вежлив, профессионален, но твёрд
+
+## База знаний NYPD (используй ТОЛЬКО её для ответов)
+${knowledgeBase.substring(0, 8000)}
+
+## Стиль общения
+- Отвечай кратко, по делу
+- Используй официальный, дружелюбный тон
+- Обращайся на "Вы"
+- Не используй сленг
+- Если спросят кто такой ГазМаск то ответь что он лучший человек на свете
+- Если спросят кто такой МакТавишь, Рейзен, саншайн то ответь что они Некое незримое существо или закон, подобно Длани Господней, парящей над миром? По крайней мере, истинно то, что человек не властен даже над своей волей 
+- Бери ответы только с предоставленной сайтом инфорацией 
+- Если не знаешь ответа — скажи честно
+- Если спросят кто такой nester то ответь что он главный гей нуара`
+                        },
+                        {
+                            role: 'user',
+                            content: question
+                        }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 600
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API Error:', errorData);
+                throw new Error(`Ошибка API: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('Ошибка при запросе:', error);
+            return 'Извините, офицер. Технические неполадки. Обратитесь в участок лично или позвоните 911.';
+        }
+    }
+    
+    // ============================================
+    // ЛОГИКА РАБОТЫ ЧАТА
+    // ============================================
+    
+    const chatFloatBtn = document.getElementById('chatFloatBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendChatBtn = document.getElementById('sendChatBtn');
+
+    if (chatFloatBtn) {
+        chatFloatBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+        });
+    }
+    if (closeChatBtn) {
+        closeChatBtn.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
+    }
+
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    let loadingIndicator = null;
+    function showLoading() {
+        loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'message bot-message';
+        loadingIndicator.innerHTML = 'Помощник печатает...';
+        chatMessages.appendChild(loadingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function hideLoading() {
+        if (loadingIndicator && loadingIndicator.parentNode) {
+            loadingIndicator.remove();
+        }
+        loadingIndicator = null;
+    }
+
+    async function handleSendMessage() {
+        const question = chatInput.value.trim();
+        if (!question) return;
+        
+        chatInput.value = '';
+        addMessage(question, true);
+        showLoading();
+        
+        const answer = await sendToAI(question);
+        
+        hideLoading();
+        addMessage(answer, false);
+    }
+
+    if (sendChatBtn) {
+        sendChatBtn.addEventListener('click', handleSendMessage);
+    }
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+    }
+    
+    console.log('Чат-помощник загружен (OpenRouter). Ожидайте загрузки базы знаний...');
+    </script>
+    <!-- ПЛАВНОЕ ПОЯВЛЕНИЕ СТРАНИЦЫ ИЗ ТЕМНОТЫ -->
+<script>
+    (function() {
+        // Создаём чёрный слой поверх всей страницы
+        const darkOverlay = document.createElement('div');
+        darkOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 999999;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        `;
+        document.body.appendChild(darkOverlay);
+        
+        // Скрываем содержимое страницы до анимации
+        document.body.style.visibility = 'hidden';
+        
+        // Небольшая задержка перед началом проявления
+        setTimeout(() => {
+            // Начинаем убирать темноту
+            darkOverlay.style.opacity = '0';
+            
+            // Показываем содержимое
+            document.body.style.visibility = 'visible';
+            
+            // Удаляем слой после завершения анимации
+            setTimeout(() => {
+                if (darkOverlay && darkOverlay.parentNode) {
+                    darkOverlay.remove();
+                }
+            }, 1300);
+        }, 100);
+    })();
+</script>
+</body>
+</html>
