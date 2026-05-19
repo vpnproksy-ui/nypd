@@ -1554,53 +1554,40 @@
     </script>
 <script>
     (function() {
-        window.addEventListener('load', function() {
-            // Находим все внутренние ссылки
-            const links = document.querySelectorAll('a[href^="cop1.html"], a[href^="index.html"], a[href^="guideorg.html"], a[href^="errorgmodla.html"], a[href$=".html"], a[href$=".png"]');
+        // Создаём чёрный слой поверх всей страницы
+        const darkOverlay = document.createElement('div');
+        darkOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 999999;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        `;
+        document.body.appendChild(darkOverlay);
+        
+        // Скрываем содержимое страницы до анимации
+        document.body.style.visibility = 'hidden';
+        
+        // Небольшая задержка перед началом проявления
+        setTimeout(() => {
+            // Начинаем убирать темноту
+            darkOverlay.style.opacity = '0';
             
-            links.forEach(link => {
-                if (link.href.includes('://') && !link.href.includes(window.location.hostname)) return;
-                if (link.getAttribute('href') === '#') return;
-                
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    let targetUrl = this.getAttribute('href');
-                    
-                    // Если переходим на любую страницу, кроме index.html — всё равно показываем картинку
-                    // Картинка показывается при любом переходе
-                    
-                    // 1️⃣ СОЗДАЁМ КОНТЕЙНЕР ДЛЯ ФОТОГРАФИИ НА ВЕСЬ ЭКРАН
-                    const fullscreenImage = document.createElement('div');
-                    fullscreenImage.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: url('gorodnoir.png') no-repeat center center;
-                        background-size: cover;
-                        z-index: 99999;
-                        opacity: 0;
-                        transition: opacity 0.3s ease;
-                        pointer-events: none;
-                    `;
-                    document.body.appendChild(fullscreenImage);
-                    
-                    // ПОКАЗЫВАЕМ ФОТОГРАФИЮ
-                    setTimeout(() => {
-                        fullscreenImage.style.opacity = '1';
-                    }, 10);
-                    
-                    // ЧЕРЕЗ 0.6 СЕКУНДЫ ПЕРЕХОДИМ НА НУЖНУЮ СТРАНИЦУ
-                    setTimeout(() => {
-                        window.location.href = targetUrl;
-                    }, 600);
-                    
-                    // Блокируем скролл
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-        });
+            // Показываем содержимое
+            document.body.style.visibility = 'visible';
+            
+            // Удаляем слой после завершения анимации
+            setTimeout(() => {
+                if (darkOverlay && darkOverlay.parentNode) {
+                    darkOverlay.remove();
+                }
+            }, 1300);
+        }, 100);
     })();
 </script>
 </body>
